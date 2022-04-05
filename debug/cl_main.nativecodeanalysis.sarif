@@ -1,0 +1,484 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C6031",
+          "message": {
+            "text": "Return value ignored: 'putenv'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_main.c"
+                },
+                "region": {
+                  "startLine": 322,
+                  "startColumn": 3,
+                  "endLine": 322,
+                  "endColumn": 11
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "CL_Setenv_f",
+                  "decoratedName": "CL_Setenv_f",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6053",
+          "message": {
+            "text": "The prior call to 'strncpy' might not zero-terminate string 'sk'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_main.c"
+                },
+                "region": {
+                  "startLine": 1064,
+                  "startColumn": 8,
+                  "endLine": 1064,
+                  "endColumn": 32
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "CL_FixUpGender",
+                  "decoratedName": "CL_FixUpGender",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_main.c"
+                          },
+                          "region": {
+                            "startLine": 1052,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_main.c"
+                          },
+                          "region": {
+                            "startLine": 1053,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_main.c"
+                          },
+                          "region": {
+                            "startLine": 1055,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_main.c"
+                          },
+                          "region": {
+                            "startLine": 1057,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_main.c"
+                          },
+                          "region": {
+                            "startLine": 1063,
+                            "startColumn": 10
+                          }
+                        },
+                        "message": {
+                          "text": "'sk' is Output from 'strncpy', which may not zero-terminate it"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "essential"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_main.c"
+                          },
+                          "region": {
+                            "startLine": 1064,
+                            "startColumn": 29
+                          }
+                        },
+                        "message": {
+                          "text": "'sk' is an Input to 'strchr' (declared at c:\\program files\\microsoft visual studio\\2022\\professional\\vc\\tools\\msvc\\14.31.31103\\include\\vcruntime_string.h:70)"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_main.c"
+                          },
+                          "region": {
+                            "startLine": 1064,
+                            "startColumn": 29
+                          }
+                        },
+                        "message": {
+                          "text": "'sk' is required to be zero-terminated by a SAL annotation on 'strchr'"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.31.31105.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX86\\x86\\c1.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x005761F0 -il C:\\Users\\LEROYJ~1\\AppData\\Local\\Temp\\_CL_2d30ce8east -typedil -f client\\cl_main.c -Ze -D_MSC_EXTENSIONS -Zp8 -Gs -pc \\:/ -D_MSC_VER=1931 -D_MSC_FULL_VER=193131105 -D_MSC_BUILD=0 -D_WIN32 -D_M_IX86=600 -D_M_IX86_FP=2 -nologo -W 3 -diagnostics:column -Ot -DCODE_ANALYSIS -DWIN32 -D_DEBUG -D_WINDOWS -D_VC80_UPGRADE=0x0600 -clrNoPureCRT -D_DEBUG -D_MT -GS -D_M_FP_PRECISE -Fo.\\debug\\cl_main.obj -Fd.\\debug\\vc143.pdb -external:W 3 -Gd -analyze:projectdirectory C:\\Users\\Leroy Jenkins\\source\\repos\\quake2-full -analyze:rulesetdirectory ;C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\UnitTest\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -external:I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/qcommon/cvar.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "516a21a7c1616059d36b7131f23c922d7be560bf8c58339623496fea8a44e951"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/qcommon/qcommon.h"
+          },
+          "hashes": {
+            "sha-256": "97e97589a4c42a328eb41b5e6f9b7f3f0674ece33b26a2e09fb69ba181107230"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/q_shared.h"
+          },
+          "hashes": {
+            "sha-256": "7f698a6921f620bbef996f06fea32d4ee69bcf2f8b1e3032d432a0246512984d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/qcommon/qfiles.h"
+          },
+          "hashes": {
+            "sha-256": "c57f82fc187b6242158e0bca02b0e13b2668dfeec94e313f444f584a56c6d1c8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/qcommon/crc.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "ea18322a178ae429084ca5544d0d401443e7bf0514c2d268fbd5879447d5dbfa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/console.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "a2c3cb21223dcfba5a008245ad534bbbd8c6fae3de144315dd5afd5d246e531f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/client.h"
+          },
+          "hashes": {
+            "sha-256": "455eb8b30088d2391e5b28cb9ecf3fe09528ec5c6d77dfac82642f185f632a9a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/ref.h"
+          },
+          "hashes": {
+            "sha-256": "89dfd6912550cb4cffd6d159d1e3f403a5f14a8bb61eddbbccf580fb55556fe5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/vid.h"
+          },
+          "hashes": {
+            "sha-256": "d3870f414b1082bd3916b1c49277512a021298b3a49766c87a41fbc76fb241a9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/screen.h"
+          },
+          "hashes": {
+            "sha-256": "6931b7e9305e5015714d1f649c200cfcf450c674c6c42d575780502db3ddeeff"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/sound.h"
+          },
+          "hashes": {
+            "sha-256": "fd9c25aa54ba6d95bf93340658995cf1d115d47e7a3c62dbb5dfaf552136232b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/input.h"
+          },
+          "hashes": {
+            "sha-256": "b57bfabbbebf5cce24af76f8a3e02b678a1becb142d16359300c36308e4d335b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/keys.h"
+          },
+          "hashes": {
+            "sha-256": "9311709bbb8c271157be927003928ff02a9aa64504e9c1c566e6f783d42a3bac"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/console.h"
+          },
+          "hashes": {
+            "sha-256": "99bee3d756049775cd913db569ca9b8df07120095ee1f4e3e3c33a69ac8a5d25"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/cdaudio.h"
+          },
+          "hashes": {
+            "sha-256": "793791f0371cb96b1b9c264337bb853397f735f3b02a82cffa00e63d7d4d3183"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/win32/conproc.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "103dc6d75d4bbd54f1d7c2bc02d0347a3be4cd0e077346daaff6fce9b1849416"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/win32/conproc.h"
+          },
+          "hashes": {
+            "sha-256": "e1a7e688caa4139ef5e1fcfa329f961c9120ad362ab0b3ca46dd92dd0df2b182"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/qcommon/common.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "5a84ad5cae5c3b9b8fa0cbe2b7e1297a095ca08eecddc82b041a97ccf7f967fa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/anorms.h"
+          },
+          "hashes": {
+            "sha-256": "225e7cb103896f4dca0a53326bed3de3b2e6de3df0befe87de8bf89f91fdfcca"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/qcommon/cmodel.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "646c1f823679a2144dfa0ad6955585fa9d82cc3686f6116bdb6f45a4f4251bac"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/qcommon/cmd.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "8c46e92ad74510bfa36c89c7b7990bf82f2dd46a40095b3079305dc95419d020"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_view.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "b4a7a0fddf321aee60b6de17df1723d32e99edece186b058a012d79621ad226a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_tent.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "75c735f599932bf27d751958b0a909c010280761cea39d42fdb6ce30540a76d8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_scrn.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "b48724d0975b76d3c8608e681d7eb63dac31cc2cd093d2ccde0a2c9b4d5a5b40"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/client/cl_pred.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "b3bf2b7d41705d9163d56ea9531321a2b7d519407ea3336d53ae3cf61ec3fb06"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_parse.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "d6982696ae36bd0f4c2ed0ab52346928cb19e612011d5e1578886a4ccc69c2c5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_newfx.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "acbf50ef912c75f96ea2ab17851300fbd46c1ca2c220464aa5c318369289c57b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/client/cl_main.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "c895e2424369481d09049abc6924f2c24930a86b382d7bae8afb202fef06f65e"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,770 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.31.31105.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX86\\x86\\c1.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x005761F0 -il C:\\Users\\LEROYJ~1\\AppData\\Local\\Temp\\_CL_62385ef4ast -typedil -f g_misc.c -Ze -D_MSC_EXTENSIONS -Zp8 -Gs -pc \\:/ -D_MSC_VER=1931 -D_MSC_FULL_VER=193131105 -D_MSC_BUILD=0 -D_WIN32 -D_M_IX86=600 -D_M_IX86_FP=2 -nologo -W 3 -diagnostics:column -Ot -DCODE_ANALYSIS -DWIN32 -D_DEBUG -D_WINDOWS -DBUILDING_REF_GL -D_VC80_UPGRADE=0x0600 -D_WINDLL -clrNoPureCRT -D_DEBUG -D_MT -GS -D_M_FP_PRECISE -Fo.\\debug\\g_misc.obj -Fd.\\debug\\vc143.pdb -external:W 3 -Gd -analyze:projectdirectory C:\\Users\\Leroy Jenkins\\source\\repos\\quake2-full\\game -analyze:rulesetdirectory ;C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\UnitTest\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -external:I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_float.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "9db953d8fed7557c1bea5484d8f0c2f227342cb63aabf42b91b3222338958815"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/g_local.h"
+          },
+          "hashes": {
+            "sha-256": "cfd89a6be6a46f28a0bc3d10a07dc0e91e6e81a8257ebea1ad7b394d2b70fec9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/q_shared.h"
+          },
+          "hashes": {
+            "sha-256": "7f698a6921f620bbef996f06fea32d4ee69bcf2f8b1e3032d432a0246512984d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/game.h"
+          },
+          "hashes": {
+            "sha-256": "9973c7905f0c25f02670c2e855192c1f4a15abe21de64126a88e7035ac03ddc7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_float.h"
+          },
+          "hashes": {
+            "sha-256": "eae4a1bb1eea00281f8d9ce6ba612c9189c30de3a6f11c04e538eedb09fc692c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_flyer.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "268989f32370ceff080b1a21b8ed1cea1a96077e14e96ed05b542b1263266b8d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_flyer.h"
+          },
+          "hashes": {
+            "sha-256": "de1f4bb081fdbbfbc2bdbdbbb2cc80593701493b570fceb2f262ae5f15eb9d1b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_gladiator.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "4a9f7c7254460e24e81f3065d50e3bef31fcd5784e2c818fff8a7c6e5ed40a42"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_gladiator.h"
+          },
+          "hashes": {
+            "sha-256": "4c34bc749030d3344d853f15261b2f755358dcee55f7e4fb155dadc8125bc7a8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_gunner.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "fe2baa9dc9fb11944c72ee0d0c7726522e8c13321b98132f5f7d71083938c9b1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_gunner.h"
+          },
+          "hashes": {
+            "sha-256": "9b117f95471cd0e9f85dbcfa2f254cd7cbd7dd720f630a7e1b86a3bca322e7cd"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_hover.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "e870e6f732c77eb24fb8056864f6894c2638fd6ba459eab575a4b8ee76adcbfa"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_hover.h"
+          },
+          "hashes": {
+            "sha-256": "51cb3145738b065daf2108e0e2a9770558155638a22bcada0152eed6c3ad7962"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_infantry.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "8d5fcee81a01f6d9b3f408fbfea9e886f4d9aa8a8a0081ed69d1c7bdc7835d88"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_infantry.h"
+          },
+          "hashes": {
+            "sha-256": "d4f3eb4a997d7a1ee6761828b7fda314b016e78a9205f092ed792eb0f93ff52c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_insane.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "498917d11e43f9ce5b176a81216f4bffa486ca61f9943535a90d2ff2cb77b97e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_insane.h"
+          },
+          "hashes": {
+            "sha-256": "55c3e10defec3e220ac8b08b0f97d077a8445a53fd2d550cffdc4c4e0af3692b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_medic.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "139b413db03801d6779825b0c9d9bb44725da6c8460877d996136f814cbd3ac0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_medic.h"
+          },
+          "hashes": {
+            "sha-256": "b2d36888243e41e341e637bf939f5065047b63756764927e5444e5b4102d7e92"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_move.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "db06be49a80e0f4f7d15314d19f6abfae1f70befe4f8755c0720a06fc0e509f4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_mutant.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "781c3ab8894621b8f5c7ab8125a6fd74d77fc7beb5b7a19f474a38b8983f8e5a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_mutant.h"
+          },
+          "hashes": {
+            "sha-256": "0fa12799fdd3ad40d4d9e1213361d7022810b340b9d070f5bf6134e0a7bc9e98"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_parasite.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "16be00ae602ec24e488ca6d47b6f7d8ae0f85bd330e7ac9c85fbc94cbbe468cb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_parasite.h"
+          },
+          "hashes": {
+            "sha-256": "cf68e14cb909c1fb245728633cf2dcc7e26c6a83e7a436be9e6c3778e4990663"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/m_soldier.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "3f066641f896e7bb968d4f735fe4811243cd106d3b992fd6c8a5ae3b48cab79f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_soldier.h"
+          },
+          "hashes": {
+            "sha-256": "526416291c73227f9236c1f2c42d6a7ade3da1db59d512d2dfbad3b97b53cb46"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_supertank.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "a852a689854a5f9d2b4476de59f45eac16fe68336540dc9f72756dfef26286b3"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_supertank.h"
+          },
+          "hashes": {
+            "sha-256": "11c9f719be4285413a14546895e9dc4685ac8d720bddb72c94019d85d476cc8b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_tank.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "245aa6eabec80f640792574be6025f8bc90d6fa60f9d2c773f0782eaddd2ccdc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_tank.h"
+          },
+          "hashes": {
+            "sha-256": "d1b78c384269227a0a995d68f563a03a4ed79b96954b6652f0bab648753a1712"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/p_client.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "457864ec896d746809f9f58dc83061f8b679006db05ddbc8fdeb3fb5ca877afe"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_player.h"
+          },
+          "hashes": {
+            "sha-256": "bb24b8ca3f780d0c5e9883553d6a67a218d02b0d39555da740c3d8360602a03f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/p_hud.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "ea767661f2c999a3857258523ee50acefcd3e1be114be665ce1ac59d0299e7cb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/p_trail.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "7e9163ce85b04184066f22d80812e0425ecbdc240753311c5673d22506b43b28"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/p_view.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "4eb5434f67e89bf6e337d6e41615152219499cf4124450d61c260336ea3d6a59"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/p_weapon.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "dcd2f0163c32d750882e5cc6b8e45279d7405c6b33125f3b5c03e1f699a404d5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/q_shared.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "cd0b1efa2ca26eb2b534773db115c6ef7f9f54b87b86981517bc658042768563"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_monster.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "a7b1d833f5ac48fd5643f4d602105cfc5cb8ce098e5046b40c92f5ecc7218e87"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_phys.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "73e6df6eed6c274da7eb6a1b0c3790eebe192e60d43e3c3cea0a2250ba0d0ecb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_save.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "f947ac3286763cd58b690057973b2871ec2e39906e6f5a161250de1c685f7751"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_spawn.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "b298ca5e4222a1def18e9bab6208a8f071ec278c1a4e10e6da0bfd2bff355251"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/g_svcmds.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "6d98ecc5af9c5e236f2caa2475d7eec127f6d4b3cddbb45d2cf584831c45f6a4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_target.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "6e42247a62674f04c98e1892d104e2dd0b0ea78f1a4befafd141eac2e026843b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/g_trigger.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "f370c927566c739357131792a9d0182400abcb792fa8fda3415888d865c36c8a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_turret.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "8bc91583c6d63985bbb0c92baf2f8f80486ca1eab0d3236420ba8abb702656b1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_utils.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "1a8b509bf77b5218682fa0c83ddf7bc735493e3b8559a8885b6fdd791e2bc006"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_weapon.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "c712b12f225b1299f28cbb77fcf734b014f79290dd2878f4a1caad1443a2234a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_actor.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "b5fc9e2021914e8d778bd96b277bec267ce8fd6b291fc41b927df536e946563d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_actor.h"
+          },
+          "hashes": {
+            "sha-256": "55aa8c20a68e55a916a430af4f4e405a20a6ae5a8bfc89c2814cb6565edcb779"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_berserk.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "bae2f4478f4497fabd2e2b2d6760fee7f7e5545a3efeddd9cab9176971217fd9"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_berserk.h"
+          },
+          "hashes": {
+            "sha-256": "8234c5fb8735aacd1436af6073b322e9f23645b22f7d1d22a4794797b0e81940"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_boss2.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "059473610c8e905196a97376cb3a26b6d5c697c03f9022b8c23fc80a7fa42fdb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_boss2.h"
+          },
+          "hashes": {
+            "sha-256": "511f66752504a25df17d9fb88ebcd4deb5af2b8b54ac4ca8a20a592fdb276e6c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_boss3.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "a29cc64d6fe02f39c372a0cb934fb4dbe9428055cec7c34b6de649291314181e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_boss32.h"
+          },
+          "hashes": {
+            "sha-256": "8fcdd3201ed44a3202f5aecc8f40cfeebb20ed1ed3309abc2135be0d0cfadfd7"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_boss31.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "f32f7a71ac196bc31ff8d77b469f0782268a6103ca13bd9fb7e84e54d529527b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_boss31.h"
+          },
+          "hashes": {
+            "sha-256": "0d4cb479c50771808e0fcf516d3e22b6577ea501a7703fe8355b1b5f7c2a8572"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_boss32.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "86f7d778908810fa186d43c48ca9a0fb115e6617e6ebaaa018670d6a4cbdec34"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_brain.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "49b177fce9870cef68545a18fd47da5c035ce8226288f27adc0665c21fc7b2f2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_brain.h"
+          },
+          "hashes": {
+            "sha-256": "ddd8cf6fe581959b338f11d8a44bd13f184f55c97cd8ae9803006a5a435d8f16"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_chick.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "55b8fc0c21bf0ddd38185340f96622bccd5e33a80ce88d6702ad51d350b6c054"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_chick.h"
+          },
+          "hashes": {
+            "sha-256": "da303e29c37d4e82b9f58782542593bef4d827376e16aa2ac335cfd81c3d7c82"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_flash.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "03e2a58dfd05422cda92da117d1bbc12cc37545d5f9fb16fbdf3a55838205b36"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_flipper.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "6cc72821e8c521df9677f066b17efa0138927b96e3e68f28344a2911e7720eb4"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/m_flipper.h"
+          },
+          "hashes": {
+            "sha-256": "7761b115d43485db70921fc57bbeecd2740b63e82915b11b0ecc9791c4bc8b2b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_ai.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "2dbd20bfe9ea9bb53f15d20abd0e16ad481a7f2a3856db10b4926cb9fbf3432e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/g_chase.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "22272822b0a2ab4e7f7299ac8a4bd0355531bfca1fb3cda437bf873d58db7c1f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/g_cmds.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "a2ac104ecd425ad91854e66fcaf3cd50a5ab7b2fb52f2fc30750142412358cfc"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_combat.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "796692104808bd1a17715de9be722115ca192bb8dc52aebc0846848ec369c481"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_func.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "4ac670530e13530496bd7b11b85e3a21ee0835ab715d86d21d034330b37a4743"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/game/g_items.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "b72fd3b2b14bc0d480327a2c835c4053f64f55acd8b3e8b0b625f556a4c8f295"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/g_main.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "6d8bbfede9919a6b5df193e77b705015d901443e36939838676fa5a0c45678b5"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/game/g_misc.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "d9b5b575707371b92fc7ae01d1b13e44cdb5ddfb36edf23f043aa290e3d12cd1"
+          }
+        }
+      ]
+    }
+  ]
+}

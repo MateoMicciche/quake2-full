@@ -1,0 +1,1880 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C6387",
+          "message": {
+            "text": "'f' could be '0'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                },
+                "region": {
+                  "startLine": 461,
+                  "startColumn": 2,
+                  "endLine": 461,
+                  "endColumn": 10
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "WriteGame",
+                  "decoratedName": "WriteGame",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 439,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 440,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 441,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 443,
+                            "startColumn": 6
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 446,
+                            "startColumn": 4
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 447,
+                            "startColumn": 6
+                          }
+                        },
+                        "message": {
+                          "text": "'f' may be NULL (Enter this branch)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 448,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 450,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 451,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 452,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'fwrite' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:297)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 454,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 455,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'fwrite' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:297)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 456,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 458,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 458,
+                            "startColumn": 14
+                          }
+                        },
+                        "message": {
+                          "text": "Skip this loop, (assume 'i<game.maxclients' is false)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 461,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an Input to 'fclose' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:152)"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 461,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' should not be NULL, because this is not consistent with the SAL annotation on 'fclose'"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6387",
+          "message": {
+            "text": "'f' could be '0'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                },
+                "region": {
+                  "startLine": 452,
+                  "startColumn": 2,
+                  "endLine": 452,
+                  "endColumn": 31
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "WriteGame",
+                  "decoratedName": "WriteGame",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 439,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 440,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 441,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 443,
+                            "startColumn": 6
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 446,
+                            "startColumn": 4
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 447,
+                            "startColumn": 6
+                          }
+                        },
+                        "message": {
+                          "text": "'f' may be NULL (Enter this branch)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 448,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 450,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 451,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 452,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'fwrite' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:297)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 452,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' should not be NULL, because this is not consistent with the SAL annotation on 'fwrite'"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6387",
+          "message": {
+            "text": "'f' could be '0'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                },
+                "region": {
+                  "startLine": 476,
+                  "startColumn": 2,
+                  "endLine": 476,
+                  "endColumn": 30
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ReadGame",
+                  "decoratedName": "ReadGame",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 466,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 467,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 468,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 470,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 472,
+                            "startColumn": 4
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 473,
+                            "startColumn": 6
+                          }
+                        },
+                        "message": {
+                          "text": "'f' may be NULL (Enter this branch)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 474,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 476,
+                            "startColumn": 8
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'fread' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:239)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 476,
+                            "startColumn": 8
+                          }
+                        },
+                        "message": {
+                          "text": "'f' should not be NULL, because this is not consistent with the SAL annotation on 'fread'"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6054",
+          "message": {
+            "text": "String 'str' might not be zero-terminated."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                },
+                "region": {
+                  "startLine": 477,
+                  "startColumn": 6,
+                  "endLine": 477,
+                  "endColumn": 19
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ReadGame",
+                  "decoratedName": "ReadGame",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 466,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 467,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 468,
+                            "startColumn": 7
+                          }
+                        },
+                        "message": {
+                          "text": "This expression may not zero-terminate 'str'"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "essential"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 470,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 472,
+                            "startColumn": 4
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 473,
+                            "startColumn": 6
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 476,
+                            "startColumn": 8
+                          }
+                        },
+                        "message": {
+                          "text": "'str' is an Output from 'fread' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:239)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 477,
+                            "startColumn": 13
+                          }
+                        },
+                        "message": {
+                          "text": "'str' is an Input to 'strcmp' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\string.h:100)"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 477,
+                            "startColumn": 13
+                          }
+                        },
+                        "message": {
+                          "text": "'str' is required to be zero-terminated by a SAL annotation on 'strcmp'"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6387",
+          "message": {
+            "text": "'f' could be '0'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                },
+                "region": {
+                  "startLine": 491,
+                  "startColumn": 2,
+                  "endLine": 491,
+                  "endColumn": 10
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ReadGame",
+                  "decoratedName": "ReadGame",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 466,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 467,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 468,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 470,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 472,
+                            "startColumn": 4
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 473,
+                            "startColumn": 6
+                          }
+                        },
+                        "message": {
+                          "text": "'f' may be NULL (Enter this branch)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 474,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 476,
+                            "startColumn": 8
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'fread' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:239)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 477,
+                            "startColumn": 13
+                          }
+                        },
+                        "message": {
+                          "text": "Skip this branch, (assume 'strcmp(str, \"Apr  2 2022\")' is false)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 483,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 484,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 486,
+                            "startColumn": 8
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'fread' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:239)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 487,
+                            "startColumn": 15
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 488,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 488,
+                            "startColumn": 14
+                          }
+                        },
+                        "message": {
+                          "text": "Skip this loop, (assume 'i<game.maxclients' is false)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 491,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an Input to 'fclose' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:152)"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 491,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' should not be NULL, because this is not consistent with the SAL annotation on 'fclose'"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6387",
+          "message": {
+            "text": "'f' could be '0'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                },
+                "region": {
+                  "startLine": 618,
+                  "startColumn": 2,
+                  "endLine": 618,
+                  "endColumn": 28
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "WriteLevel",
+                  "decoratedName": "WriteLevel",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 607,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 608,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 609,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 610,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 612,
+                            "startColumn": 4
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 613,
+                            "startColumn": 6
+                          }
+                        },
+                        "message": {
+                          "text": "'f' may be NULL (Enter this branch)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 614,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 617,
+                            "startColumn": 4
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 618,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'fwrite' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:297)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 618,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' should not be NULL, because this is not consistent with the SAL annotation on 'fwrite'"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6387",
+          "message": {
+            "text": "'f' could be '0'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                },
+                "region": {
+                  "startLine": 639,
+                  "startColumn": 2,
+                  "endLine": 639,
+                  "endColumn": 10
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "WriteLevel",
+                  "decoratedName": "WriteLevel",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 607,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 608,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 609,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 610,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 612,
+                            "startColumn": 4
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 613,
+                            "startColumn": 6
+                          }
+                        },
+                        "message": {
+                          "text": "'f' may be NULL (Enter this branch)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 614,
+                            "startColumn": 12
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 617,
+                            "startColumn": 4
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 618,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'fwrite' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:297)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 621,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 622,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'fwrite' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:297)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 625,
+                            "startColumn": 19
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'WriteLevelLocals' (declared on line 536)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 628,
+                            "startColumn": 8
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 628,
+                            "startColumn": 14
+                          }
+                        },
+                        "message": {
+                          "text": "Skip this loop, (assume 'i<globals.num_edicts' is false)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 636,
+                            "startColumn": 4
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 637,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an In/Out argument to 'fwrite' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:297)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 639,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' is an Input to 'fclose' (declared at c:\\program files (x86)\\windows kits\\10\\include\\10.0.19041.0\\ucrt\\stdio.h:152)"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+                          },
+                          "region": {
+                            "startLine": 639,
+                            "startColumn": 9
+                          }
+                        },
+                        "message": {
+                          "text": "'f' should not be NULL, because this is not consistent with the SAL annotation on 'fclose'"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.31.31105.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX86\\x86\\c1.dll\" -ACf{1F7B090C-16DB-4822-966A-A93D26ED4681} -ACpmspft140.dll -Alint -D_PREFAST_ -D_AST_FE_ -Analyze -zm0x005761F0 -il C:\\Users\\LEROYJ~1\\AppData\\Local\\Temp\\_CL_3fa05f09ast -typedil -f g_save.c -Ze -D_MSC_EXTENSIONS -Zp8 -Gs -pc \\:/ -D_MSC_VER=1931 -D_MSC_FULL_VER=193131105 -D_MSC_BUILD=0 -D_WIN32 -D_M_IX86=600 -D_M_IX86_FP=2 -nologo -W 3 -diagnostics:column -Ot -DCODE_ANALYSIS -DWIN32 -D_DEBUG -D_WINDOWS -D_VC80_UPGRADE=0x0600 -D_WINDLL -clrNoPureCRT -D_DEBUG -D_MT -GS -D_M_FP_PRECISE -Fo.\\debug\\g_save.obj -Fd.\\debug\\vc143.pdb -external:W 3 -Gd -analyze:projectdirectory C:\\Users\\Leroy Jenkins\\source\\repos\\quake2-full\\ctf -analyze:rulesetdirectory ;C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\Team Tools\\Static Analysis Tools\\\\Rule Sets; -analyze:ruleset C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\Team Tools\\Static Analysis Tools\\Rule Sets\\NativeRecommendedRules.ruleset -analyze:quiet -analyze:plugin C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\bin\\HostX86\\x86\\EspXEngine.dll -FC -errorreport:prompt -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Tools\\MSVC\\14.31.31103\\atlmfc\\include -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\ucrt -external:I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\UnitTest\\include -I C:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\VC\\Auxiliary\\VS\\UnitTest\\include -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\um -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\shared -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\winrt -external:I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -I C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.19041.0\\cppwinrt -external:I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um -I C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\Include\\um",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_items.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "c4306aaf0ac37ea26d1bffefe9a707d4f356b5469ade50431e63f4fb2d46833c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/ctf/g_local.h"
+          },
+          "hashes": {
+            "sha-256": "686b57ac26c4a83564c5902b87aa753216bf09477e4d0a962df617843785a21c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/ctf/q_shared.h"
+          },
+          "hashes": {
+            "sha-256": "7f698a6921f620bbef996f06fea32d4ee69bcf2f8b1e3032d432a0246512984d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/ctf/game.h"
+          },
+          "hashes": {
+            "sha-256": "843bb97283a8c39c897246b35785a48565242bc4494762b550765136024e3b4e"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/ctf/p_menu.h"
+          },
+          "hashes": {
+            "sha-256": "44a69a5159236ea889a513dbb84d4bdf981c32f969f7e650f0995a6efda1d423"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/ctf/g_ctf.h"
+          },
+          "hashes": {
+            "sha-256": "743bd26a2817f4f27e4d3e414fddb5be1dc5c6ad38062dce00e195c1fef06bb0"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/ctf/g_main.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "e96365d80d30fb15ed4097b97a08b3465e9dbd0ef436d00531782dc59784eaa2"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/leroy jenkins/source/repos/quake2-full/ctf/g_misc.c"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "7fdf7bd54afe77e0409e5198a40cc83e44097709beb6a240f84bff7a4795f884"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_monster.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "a7b1d833f5ac48fd5643f4d602105cfc5cb8ce098e5046b40c92f5ecc7218e87"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_phys.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "9f8ebf3944810302e4e70a3cde7c0716b2b11635e75bbf04e2688bffcead1681"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Leroy Jenkins/source/repos/quake2-full/ctf/g_save.c"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "34583b164df9cf22098babfe607a831e6c01cd59665d37678da2f2232f28943d"
+          }
+        }
+      ]
+    }
+  ]
+}
