@@ -901,6 +901,67 @@ void Cmd_PlayerList_f(edict_t *ent)
 
 
 /*
+==================
+BuyMenuComputer
+
+Draw BuyMenu computer.
+==================
+*/
+void BuyMenuComputer(edict_t* ent)
+{
+	char	string[1024];
+
+	// send the layout
+	Com_sprintf(string, sizeof(string),
+		"xv 32 yv 8 picn inventory "		// background
+		"xv 0 yv 44 cstring2 \"%s\" "		// skill
+		"xv 0 yv 54 cstring2 \"%s\" "		// level name
+		"xv 0 yv 110 cstring2 \"%s\" "		// help 1
+		"xv 0 yv 130 cstring2 \"%s\" "		// help 2
+		"xv 50 yv 164 string2 \" kills     goals    secrets\" "
+		"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ",
+		"Water",
+		"Wa",
+		"Wa",
+		"Wa",
+		1, 1,
+		1, 1,
+		1, 1);
+	gi.WriteByte(svc_layout);
+	gi.WriteString(string);
+	gi.unicast(ent, true);
+}
+
+/*
+=================
+Cmd_BuyMenu_f
+=================
+*/
+void Cmd_BuyMenu_f(edict_t* ent)
+{
+	// this is for backwards compatability
+	if (deathmatch->value)
+	{
+		Cmd_Score_f(ent);
+		return;
+	}
+
+	ent->client->showinventory = false;
+	ent->client->showscores = false;
+
+	if (ent->client->showhelp && (ent->client->pers.game_helpchanged == game.helpchanged))
+	{
+		ent->client->showhelp = false;
+		return;
+	}
+
+	ent->client->showhelp = true;
+	ent->client->pers.helpchanged = 0;
+	BuyMenuComputer(ent);
+}
+
+
+/*
 =================
 ClientCommand
 =================
@@ -987,6 +1048,8 @@ void ClientCommand (edict_t *ent)
 		Cmd_Wave_f (ent);
 	else if (Q_stricmp(cmd, "playerlist") == 0)
 		Cmd_PlayerList_f(ent);
+	else if (Q_stricmp(cmd, "buymenu") == 0)
+		Cmd_BuyMenu_f(ent);
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }

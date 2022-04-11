@@ -1154,6 +1154,7 @@ void soldier_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int dama
 		ThrowGib (self, "models/objects/gibs/chest/tris.md2", damage, GIB_ORGANIC);
 		ThrowHead (self, "models/objects/gibs/head2/tris.md2", damage, GIB_ORGANIC);
 		self->deadflag = DEAD_DEAD;
+
 		return;
 	}
 
@@ -1172,12 +1173,28 @@ void soldier_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int dama
 	else // (self->s.skinnum == 5)
 		gi.sound (self, CHAN_VOICE, sound_death_ss, 1, ATTN_NORM, 0);
 
+	gi.bprintf(PRINT_MEDIUM, "%s just died and dropped something \n", self->classname);
+	//gi.bprintf(PRINT_MEDIUM, "%f \n", point[0]);
+	//gi.bprintf(PRINT_MEDIUM, "%f \n", point[1]);
+	//gi.bprintf(PRINT_MEDIUM, "%f \n", point[2]);
+	gitem_t* it;
+	edict_t* it_ent;
+
+	it = FindItem("Body Armor");
+	it_ent = G_Spawn();
+	it_ent->classname = it->classname;
+	it_ent->s.origin[0] = point[0];
+	it_ent->s.origin[1] = point[1];
+	it_ent->s.origin[2] = point[2];
+	SpawnItem(it_ent, it);
+
 	if (fabs((self->s.origin[2] + self->viewheight) - point[2]) <= 4)
 	{
 		// head shot
 		self->monsterinfo.currentmove = &soldier_move_death3;
 		return;
 	}
+
 
 	n = rand() % 5;
 	if (n == 0)

@@ -24,6 +24,8 @@ void ClientUserinfoChanged (edict_t *ent, char *userinfo);
 
 void SP_misc_teleporter_dest (edict_t *ent);
 
+int player_level = 1;
+
 //
 // Gross, ugly, disgustuing hack section
 //
@@ -627,6 +629,9 @@ void InitClientPersistant (gclient_t *client)
 	client->pers.max_slugs		= 50;
 
 	client->pers.connected = true;
+
+	client->pers.level = 1;
+	client->pers.xp = 0;
 }
 
 
@@ -1802,4 +1807,12 @@ void ClientBeginServerFrame (edict_t *ent)
 			PlayerTrail_Add (ent->s.old_origin);
 
 	client->latched_buttons = 0;
+}
+
+int GetPlayerLevel() {
+	return player_level;
+}
+
+void SetPlayerLevel(int new_level) {
+	player_level = new_level;
 }

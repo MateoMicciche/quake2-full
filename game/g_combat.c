@@ -84,6 +84,19 @@ qboolean CanDamage (edict_t *targ, edict_t *inflictor)
 }
 
 
+void CheckLevel(edict_t* player) {
+	int currentXP = player->client->xp;
+	gi.bprintf(PRINT_MEDIUM, "%i total xp\n", player->client->xp);
+	if (currentXP == 50) {
+		player->client->xp = 0;
+		player->client->level++;
+	}
+	//gi.bprintf(PRINT_MEDIUM, "%f speed\n", player->speed);
+	//gi.bprintf(PRINT_MEDIUM, "%f move speed\n", player->moveinfo.move_speed);
+	//gi.bprintf(PRINT_MEDIUM, "%f current speed\n", player->moveinfo.current_speed);
+
+}
+
 /*
 ============
 Killed
@@ -96,12 +109,28 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 
 	targ->enemy = attacker;
 
+
 	if ((targ->svflags & SVF_MONSTER) && (targ->deadflag != DEAD_DEAD))
 	{
 //		targ->svflags |= SVF_DEADMONSTER;	// now treat as a different content type
 		if (!(targ->monsterinfo.aiflags & AI_GOOD_GUY))
 		{
 			level.killed_monsters++;
+			gi.bprintf(PRINT_MEDIUM, "YOOOO \n");
+
+
+
+			if (attacker->client) {
+				gi.bprintf(PRINT_MEDIUM, "%i \n", attacker->client->level);
+				gi.bprintf(PRINT_MEDIUM, "%s \n", targ->classname);
+				gi.bprintf(PRINT_MEDIUM, "%f speed\n", attacker->yaw_speed);
+				gi.bprintf(PRINT_MEDIUM, "%f speed\n", attacker->velocity[2]);
+				gi.bprintf(PRINT_MEDIUM, "%f move speed\n", attacker->moveinfo.move_speed);
+				gi.bprintf(PRINT_MEDIUM, "%f current speed\n", attacker->moveinfo.current_speed);
+				
+				attacker->client->xp += 10;
+				CheckLevel(attacker);
+			}
 			if (coop->value && attacker->client)
 				attacker->client->resp.score++;
 			// medics won't heal monsters that they kill themselves

@@ -761,6 +761,7 @@ void ClientBeginServerFrame (edict_t *ent);
 void player_pain (edict_t *self, edict_t *other, float kick, int damage);
 void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, vec3_t point);
 
+
 //
 // g_svcmds.c
 //
@@ -862,6 +863,10 @@ typedef struct
 	int			helpchanged;
 
 	qboolean	spectator;			// client is a spectator
+
+	int			level;
+	int			xp;
+
 } client_persistant_t;
 
 // client data that stays across deathmatch respawns
@@ -959,6 +964,9 @@ struct gclient_s
 
 	edict_t		*chase_target;		// player we are chasing
 	qboolean	update_chase;		// need to update chase info?
+
+	int			level;
+	int			xp;
 };
 
 
