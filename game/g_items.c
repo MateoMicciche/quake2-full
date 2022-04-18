@@ -683,6 +683,17 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 	return true;
 }
 
+qboolean Pickup_Dosh(edict_t* ent, edict_t* other)
+{	
+	gi.bprintf(PRINT_MEDIUM, "We have picked up dosh\n");
+	if (other->client) {
+		gi.bprintf(PRINT_MEDIUM, "Hmmmmm\n");
+		other->client->dosh += 100;
+		gi.bprintf(PRINT_MEDIUM, "%i current dosh", other->client->dosh);
+	}
+	
+}
+
 //======================================================================
 
 int PowerArmorType (edict_t *ent)
@@ -2109,6 +2120,28 @@ tank commander's head
 		NULL,
 		0,
 /* precache */ "items/s_health.wav items/n_health.wav items/l_health.wav items/m_health.wav"
+	},
+
+
+	{
+		"item_dosh",
+		Pickup_Dosh,
+		NULL,
+		NULL,
+		NULL,
+		"misc/ar1_pkup.wav",
+		"models/items/armor/shard/tris.md2", EF_ROTATE,
+		NULL,
+/* icon */		"i_bodyarmor",
+/* pickup */	"Dosh",
+/* width */		3,
+		0,
+		NULL,
+		IT_ARMOR,
+		0,
+		&bodyarmor_info,
+		ARMOR_BODY,
+		/* precache */ ""
 	},
 
 	// end of list marker

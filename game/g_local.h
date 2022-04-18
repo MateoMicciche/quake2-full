@@ -866,6 +866,8 @@ typedef struct
 
 	int			level;
 	int			xp;
+	int			dosh;
+	int			shop[MAX_ITEMS];
 
 } client_persistant_t;
 
@@ -967,6 +969,8 @@ struct gclient_s
 
 	int			level;
 	int			xp;
+	int			dosh;
+	qboolean	showbuymenu;
 };
 
 

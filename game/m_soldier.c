@@ -1180,7 +1180,7 @@ void soldier_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int dama
 	gitem_t* it;
 	edict_t* it_ent;
 
-	it = FindItem("Body Armor");
+	it = FindItem("Dosh");
 	it_ent = G_Spawn();
 	it_ent->classname = it->classname;
 	it_ent->s.origin[0] = point[0];

@@ -76,22 +76,39 @@ void SelectNextItem (edict_t *ent, int itflags)
 		return;
 	}
 
-	// scan  for the next valid one
-	for (i=1 ; i<=MAX_ITEMS ; i++)
-	{
-		index = (cl->pers.selected_item + i)%MAX_ITEMS;
-		if (!cl->pers.inventory[index])
-			continue;
-		it = &itemlist[index];
-		if (!it->use)
-			continue;
-		if (!(it->flags & itflags))
-			continue;
+	if (cl->showbuymenu) {
+		for (i = 1; i <= MAX_ITEMS; i++)
+		{
+			index = (cl->pers.selected_item + i) % MAX_ITEMS;
+			if (!cl->pers.shop[index])
+				continue;
+			it = &itemlist[index];
+			if (!it->use)
+				continue;
+			if (!(it->flags & itflags))
+				continue;
 
-		cl->pers.selected_item = index;
-		return;
+			cl->pers.selected_item = index;
+			return;
+		}
 	}
+	else {
+		// scan  for the next valid one
+		for (i = 1; i <= MAX_ITEMS; i++)
+		{
+			index = (cl->pers.selected_item + i) % MAX_ITEMS;
+			if (!cl->pers.inventory[index])
+				continue;
+			it = &itemlist[index];
+			if (!it->use)
+				continue;
+			if (!(it->flags & itflags))
+				continue;
 
+			cl->pers.selected_item = index;
+			return;
+		}
+	}
 	cl->pers.selected_item = -1;
 }
 
@@ -107,21 +124,39 @@ void SelectPrevItem (edict_t *ent, int itflags)
 		ChasePrev(ent);
 		return;
 	}
+	
+	if (cl->showbuymenu) {
+		for (i = 1; i <= MAX_ITEMS; i++)
+		{
+			index = (cl->pers.selected_item + MAX_ITEMS - i) % MAX_ITEMS;
+			if (!cl->pers.shop[index])
+				continue;
+			it = &itemlist[index];
+			if (!it->use)
+				continue;
+			if (!(it->flags & itflags))
+				continue;
 
-	// scan  for the next valid one
-	for (i=1 ; i<=MAX_ITEMS ; i++)
-	{
-		index = (cl->pers.selected_item + MAX_ITEMS - i)%MAX_ITEMS;
-		if (!cl->pers.inventory[index])
-			continue;
-		it = &itemlist[index];
-		if (!it->use)
-			continue;
-		if (!(it->flags & itflags))
-			continue;
+			cl->pers.selected_item = index;
+			return;
+		}
+	}
+	else {
+		// scan  for the next valid one
+		for (i = 1; i <= MAX_ITEMS; i++)
+		{
+			index = (cl->pers.selected_item + MAX_ITEMS - i) % MAX_ITEMS;
+			if (!cl->pers.inventory[index])
+				continue;
+			it = &itemlist[index];
+			if (!it->use)
+				continue;
+			if (!(it->flags & itflags))
+				continue;
 
-		cl->pers.selected_item = index;
-		return;
+			cl->pers.selected_item = index;
+			return;
+		}
 	}
 
 	cl->pers.selected_item = -1;
@@ -133,8 +168,14 @@ void ValidateSelectedItem (edict_t *ent)
 
 	cl = ent->client;
 
-	if (cl->pers.inventory[cl->pers.selected_item])
-		return;		// valid
+	if (cl->showbuymenu) {
+		if (cl->pers.shop[cl->pers.selected_item])
+			return;		// valid
+	}
+	else {
+		if (cl->pers.inventory[cl->pers.selected_item])
+			return;		// valid
+	}
 
 	SelectNextItem (ent, -1);
 }
@@ -480,7 +521,11 @@ void Cmd_Inven_f (edict_t *ent)
 	}
 
 	cl->showinventory = true;
-
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[0]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[1]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[7]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[8]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[9]);
 	gi.WriteByte (svc_inventory);
 	for (i=0 ; i<MAX_ITEMS ; i++)
 	{
@@ -909,26 +954,31 @@ Draw BuyMenu computer.
 */
 void BuyMenuComputer(edict_t* ent)
 {
-	char	string[1024];
+	int			i;
+	gclient_t* cl;
 
-	// send the layout
-	Com_sprintf(string, sizeof(string),
-		"xv 32 yv 8 picn inventory "		// background
-		"xv 0 yv 44 cstring2 \"%s\" "		// skill
-		"xv 0 yv 54 cstring2 \"%s\" "		// level name
-		"xv 0 yv 110 cstring2 \"%s\" "		// help 1
-		"xv 0 yv 130 cstring2 \"%s\" "		// help 2
-		"xv 50 yv 164 string2 \" kills     goals    secrets\" "
-		"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ",
-		"Water",
-		"Wa",
-		"Wa",
-		"Wa",
-		1, 1,
-		1, 1,
-		1, 1);
-	gi.WriteByte(svc_layout);
-	gi.WriteString(string);
+	cl = ent->client;
+
+	cl->showscores = false;
+	cl->showhelp = false;
+
+	if (cl->showinventory)
+	{
+		cl->showinventory = false;
+		return;
+	}
+
+	cl->showinventory = true;
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[0]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[1]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[7]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[8]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[9]);
+	gi.WriteByte(svc_inventory);
+	for (i = 0; i < MAX_ITEMS; i++)
+	{
+		gi.WriteShort(cl->pers.inventory[i]);
+	}
 	gi.unicast(ent, true);
 }
 
@@ -939,25 +989,39 @@ Cmd_BuyMenu_f
 */
 void Cmd_BuyMenu_f(edict_t* ent)
 {
-	// this is for backwards compatability
-	if (deathmatch->value)
+	int			i;
+	gclient_t* cl;
+
+	cl = ent->client;
+
+	cl->showscores = false;
+	cl->showhelp = false;
+
+	if (cl->showinventory)
 	{
-		Cmd_Score_f(ent);
+		cl->showinventory = false;
 		return;
 	}
 
-	ent->client->showinventory = false;
-	ent->client->showscores = false;
+	cl->showinventory = true;
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[0]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[1]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[7]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[8]);
+	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[9]);
+	
 
-	if (ent->client->showhelp && (ent->client->pers.game_helpchanged == game.helpchanged))
+	gi.WriteByte(svc_inventory);
+	for (i = 0; i < MAX_ITEMS; i++)
 	{
-		ent->client->showhelp = false;
-		return;
+		if (i > 6 && i < 18 ) {
+			cl->pers.inventory[i] = 1;
+			cl->pers.shop[i] = 1;
+		}
+		gi.WriteShort(cl->pers.shop[i]);
 	}
 
-	ent->client->showhelp = true;
-	ent->client->pers.helpchanged = 0;
-	BuyMenuComputer(ent);
+	gi.unicast(ent, true);
 }
 
 
