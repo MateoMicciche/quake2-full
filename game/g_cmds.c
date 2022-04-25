@@ -991,6 +991,7 @@ void Cmd_BuyMenu_f(edict_t* ent)
 {
 	int			i;
 	gclient_t* cl;
+	int index;
 
 	cl = ent->client;
 
@@ -1004,6 +1005,9 @@ void Cmd_BuyMenu_f(edict_t* ent)
 	}
 
 	cl->showinventory = true;
+	index = ITEM_INDEX(FindItem("Buy Shotgun"));
+	cl->pers.inventory[index]++;
+	cl->pers.shop[index]++;
 	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[0]);
 	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[1]);
 	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[7]);
@@ -1014,14 +1018,59 @@ void Cmd_BuyMenu_f(edict_t* ent)
 	gi.WriteByte(svc_inventory);
 	for (i = 0; i < MAX_ITEMS; i++)
 	{
-		if (i > 6 && i < 18 ) {
-			cl->pers.inventory[i] = 1;
-			cl->pers.shop[i] = 1;
-		}
+		//if (i > 6 && i < 18 ) {
+		//	cl->pers.inventory[i] = 1;
+		//	cl->pers.shop[i] = 1;
+		//}
+
 		gi.WriteShort(cl->pers.shop[i]);
 	}
 
 	gi.unicast(ent, true);
+}
+
+/*
+=================
+Cmd_Class_f
+=================
+*/
+void Cmd_Class_f(edict_t* ent)
+{	
+	char* name;
+	gclient_t* cl;
+
+	cl = ent->client;
+
+	name = gi.args();
+	gi.bprintf(PRINT_MEDIUM, "%s\n", name);
+
+	if (Q_stricmp(name, "gunslinger") == 0) {
+		cl->pers.max_health = 75;
+		cl->pers.health = 75;
+		ent->max_health = 75;
+		ent->health = ent->max_health;
+		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.move_speed);
+		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.current_speed);
+		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.speed);
+		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
+	}
+
+	else if (Q_stricmp(name, "beserker") == 0) {
+		cl->pers.max_health = 200;
+		cl->pers.health = 200;
+		ent->max_health = 200;
+		ent->health = ent->max_health;
+		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
+	}
+
+	else if (Q_stricmp(name, "demo") == 0) {
+		cl->pers.max_health = 125;
+		cl->pers.health = 125;
+		ent->max_health = 125;
+		ent->health = ent->max_health;
+		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
+	}
+	
 }
 
 
@@ -1114,6 +1163,8 @@ void ClientCommand (edict_t *ent)
 		Cmd_PlayerList_f(ent);
 	else if (Q_stricmp(cmd, "buymenu") == 0)
 		Cmd_BuyMenu_f(ent);
+	else if (Q_stricmp(cmd, "class") == 0)
+		Cmd_Class_f(ent);
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }

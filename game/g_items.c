@@ -694,6 +694,18 @@ qboolean Pickup_Dosh(edict_t* ent, edict_t* other)
 	
 }
 
+void Buy_Shotgun(edict_t* ent, gitem_t* item)
+{
+	int		index;
+
+	//ent->client->pers.inventory[ITEM_INDEX(item)]--;
+	index = ITEM_INDEX(FindItem("Shotgun"));
+	ent->client->pers.inventory[index]++;
+	ValidateSelectedItem(ent);
+
+	gi.bprintf(PRINT_MEDIUM, "User has purchased shotgun\n");
+}
+
 //======================================================================
 
 int PowerArmorType (edict_t *ent)
@@ -1675,6 +1687,7 @@ always owned, never in the world
 	//
 /*QUAKED item_quad (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
+
 	{
 		"item_quad", 
 		Pickup_Powerup,
@@ -2141,6 +2154,29 @@ tank commander's head
 		0,
 		&bodyarmor_info,
 		ARMOR_BODY,
+		/* precache */ ""
+	},
+			/*QUAKED item_quad (.3 .3 1) (-16 -16 -16) (16 16 16)
+		*/
+
+	{
+		"item_buy_shotgun",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy Shotgun",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
 		/* precache */ ""
 	},
 
