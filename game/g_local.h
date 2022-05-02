@@ -815,6 +815,8 @@ void ChaseNext(edict_t *ent);
 void ChasePrev(edict_t *ent);
 void GetChaseTarget(edict_t *ent);
 
+int GetPlayerLevel();
+
 //============================================================================
 
 // client_t->anim_priority
@@ -868,6 +870,7 @@ typedef struct
 	int			xp;
 	int			dosh;
 	int			shop[MAX_ITEMS];
+	int			playerClass;
 
 } client_persistant_t;
 
@@ -971,6 +974,7 @@ struct gclient_s
 	int			xp;
 	int			dosh;
 	qboolean	showbuymenu;
+	int			player_class;
 };
 
 

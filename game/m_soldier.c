@@ -1144,6 +1144,8 @@ mmove_t soldier_move_death6 = {FRAME_death601, FRAME_death610, soldier_frames_de
 void soldier_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, vec3_t point)
 {
 	int		n;
+	gitem_t* it;
+	edict_t* it_ent;
 
 // check for gib
 	if (self->health <= self->gib_health)
@@ -1177,8 +1179,6 @@ void soldier_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int dama
 	//gi.bprintf(PRINT_MEDIUM, "%f \n", point[0]);
 	//gi.bprintf(PRINT_MEDIUM, "%f \n", point[1]);
 	//gi.bprintf(PRINT_MEDIUM, "%f \n", point[2]);
-	gitem_t* it;
-	edict_t* it_ent;
 
 	it = FindItem("Dosh");
 	it_ent = G_Spawn();

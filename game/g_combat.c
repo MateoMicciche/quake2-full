@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // g_combat.c
 
 #include "g_local.h"
+//int killStack;
 
 /*
 ============
@@ -85,11 +86,24 @@ qboolean CanDamage (edict_t *targ, edict_t *inflictor)
 
 
 void CheckLevel(edict_t* player) {
-	int currentXP = player->client->xp;
+	int currentXP;
+
+	currentXP = player->client->xp;
 	gi.bprintf(PRINT_MEDIUM, "%i total xp\n", player->client->xp);
 	if (currentXP == 50) {
 		player->client->xp = 0;
 		player->client->level++;
+	}
+	
+	// Beserker Level 5
+	if (player->client->player_class == 3) {
+		player->max_health = 300;
+		player->health = player->max_health;
+	}
+
+	// Beserker Level 10
+	if (player->client->player_class == 3) {
+		player->health += 5;
 	}
 	//gi.bprintf(PRINT_MEDIUM, "%f speed\n", player->speed);
 	//gi.bprintf(PRINT_MEDIUM, "%f move speed\n", player->moveinfo.move_speed);
@@ -109,6 +123,8 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 
 	targ->enemy = attacker;
 
+	gi.bprintf(PRINT_MEDIUM, "%s\n", inflictor->classname);
+
 
 	if ((targ->svflags & SVF_MONSTER) && (targ->deadflag != DEAD_DEAD))
 	{
@@ -116,8 +132,9 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 		if (!(targ->monsterinfo.aiflags & AI_GOOD_GUY))
 		{
 			level.killed_monsters++;
+			//killStack++;
 			gi.bprintf(PRINT_MEDIUM, "YOOOO \n");
-
+			//gi.bprintf(PRINT_MEDIUM, "%i \n", killStack);
 
 
 			if (attacker->client) {
@@ -414,6 +431,17 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 
 	if (!targ->takedamage)
 		return;
+
+	// Demolitionist Level 5
+	if (Q_stricmp(inflictor->classname, "rocket") == 0 && targ->client->player_class == 2) {
+		damage = 0;
+	}
+
+	// Beserker Level 15
+	if (targ->client && targ->client->player_class == 3) {
+		damage = 0;
+		gi.bprintf(PRINT_MEDIUM, "No damage");
+	}
 
 	// friendly fire avoidance
 	// if enabled you can't hurt teammates (but you can hurt yourself)

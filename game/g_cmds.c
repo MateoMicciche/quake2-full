@@ -992,6 +992,7 @@ void Cmd_BuyMenu_f(edict_t* ent)
 	int			i;
 	gclient_t* cl;
 	int index;
+	int len;
 
 	cl = ent->client;
 
@@ -1005,9 +1006,14 @@ void Cmd_BuyMenu_f(edict_t* ent)
 	}
 
 	cl->showinventory = true;
+	len = game.num_items;
 	index = ITEM_INDEX(FindItem("Buy Shotgun"));
-	cl->pers.inventory[index]++;
-	cl->pers.shop[index]++;
+	for (i = index; i < len; i++) {
+		cl->pers.inventory[i] = 1;
+		cl->pers.shop[i] = 1;
+	}
+	//cl->pers.inventory[index]++;
+	//cl->pers.shop[index]++;
 	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[0]);
 	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[1]);
 	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[7]);
@@ -1053,6 +1059,7 @@ void Cmd_Class_f(edict_t* ent)
 		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.current_speed);
 		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.speed);
 		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
+		cl->player_class = 1;
 	}
 
 	else if (Q_stricmp(name, "beserker") == 0) {
@@ -1061,6 +1068,7 @@ void Cmd_Class_f(edict_t* ent)
 		ent->max_health = 200;
 		ent->health = ent->max_health;
 		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
+		cl->player_class = 3;
 	}
 
 	else if (Q_stricmp(name, "demo") == 0) {
@@ -1069,6 +1077,7 @@ void Cmd_Class_f(edict_t* ent)
 		ent->max_health = 125;
 		ent->health = ent->max_health;
 		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
+		cl->player_class = 2;
 	}
 	
 }

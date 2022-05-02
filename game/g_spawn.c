@@ -615,7 +615,6 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 #endif
 
 	G_FindTeams ();
-
 	PlayerTrail_Init ();
 }
 
@@ -644,7 +643,7 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	endif
 
 #endif
-
+int l = 5;
 char *single_statusbar = 
 "yb	-24 "
 

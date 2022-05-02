@@ -697,13 +697,23 @@ qboolean Pickup_Dosh(edict_t* ent, edict_t* other)
 void Buy_Shotgun(edict_t* ent, gitem_t* item)
 {
 	int		index;
+	size_t	itemStringSize;
+	char weaponTxt[20];
 
-	//ent->client->pers.inventory[ITEM_INDEX(item)]--;
-	index = ITEM_INDEX(FindItem("Shotgun"));
+	itemStringSize = strlen(item->pickup_name);
+	index = ITEM_INDEX(FindItem(item->pickup_name));
+
+	memcpy(weaponTxt, &item->pickup_name[4], itemStringSize-4);
+	weaponTxt[itemStringSize - 4] = '\0';
+
+	//index = ITEM_INDEX(FindItem(""));
+	ent->client->pers.inventory[ITEM_INDEX(item)]--;
+
+	index = ITEM_INDEX(FindItem(weaponTxt));
 	ent->client->pers.inventory[index]++;
 	ValidateSelectedItem(ent);
 
-	gi.bprintf(PRINT_MEDIUM, "User has purchased shotgun\n");
+	gi.bprintf(PRINT_MEDIUM, "User has purchased %s\n", weaponTxt);
 }
 
 //======================================================================
@@ -2170,6 +2180,174 @@ tank commander's head
 		NULL,
 		/* icon */		"p_quad",
 		/* pickup */	"Buy Shotgun",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
+		"item_buy_supershotgun",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy Super Shotgun",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
+		"item_buy_machinegun",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy Machinegun",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
+		"item_buy_chaingun",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy Chaingun",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
+		"item_buy_grenadelauncher",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy Grenade Launcher",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
+		"item_buy_hyperblaster",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy HyperBlaster",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
+		"item_buy_rocketlauncher",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy Rocket Launcher",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
+		"item_buy_railgun",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy Railgun",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
+		"item_buy_bfg",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy BFG10K",
 		/* width */		2,
 		0,
 		NULL,

@@ -630,8 +630,10 @@ void InitClientPersistant (gclient_t *client)
 
 	client->pers.connected = true;
 
+	// Changes from mod to persist
 	client->pers.level = 1;
 	client->pers.xp = 0;
+	client->pers.dosh = 1000;
 }
 
 
