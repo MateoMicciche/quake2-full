@@ -1009,6 +1009,9 @@ typedef enum
 #define STAT_CHASE				16
 #define STAT_SPECTATOR			17
 
+#define STAT_LEVEL				18
+#define STAT_DOSH				19
+
 #define	MAX_STATS				32
 
 

@@ -816,6 +816,9 @@ void ChasePrev(edict_t *ent);
 void GetChaseTarget(edict_t *ent);
 
 int GetPlayerLevel();
+void SP_target_changelevel(edict_t* ent);
+void ED_CallSpawn(edict_t* ent);
+void Cmd_Give_f(self);
 
 //============================================================================
 
@@ -970,11 +973,7 @@ struct gclient_s
 	edict_t		*chase_target;		// player we are chasing
 	qboolean	update_chase;		// need to update chase info?
 
-	int			level;
-	int			xp;
-	int			dosh;
 	qboolean	showbuymenu;
-	int			player_class;
 };
 
 

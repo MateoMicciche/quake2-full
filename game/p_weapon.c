@@ -769,7 +769,7 @@ void Weapon_RocketLauncher_Fire (edict_t *ent)
 	damage_radius = 120;
 
 	// Demolitionist Level 10
-	if (ent->client->player_class == 2) {
+	if (ent->client->pers.playerClass == 2) {
 		radius_damage = 240;
 		damage_radius = 240;
 	}
@@ -1027,8 +1027,11 @@ void Machinegun_Fire (edict_t *ent)
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 
+	// Gunslinger Level 5
 	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		ent->client->pers.inventory[ent->client->ammo_index]--;
+		if (random() <= 0.82) {
+			ent->client->pers.inventory[ent->client->ammo_index]--;
+		}
 
 	ent->client->anim_priority = ANIM_ATTACK;
 	if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
@@ -1349,17 +1352,23 @@ void weapon_railgun_fire (edict_t *ent)
 	ent->client->ps.gunframe++;
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 
-	//if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		//ent->client->pers.inventory[ent->client->ammo_index]--;
+	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
+		ent->client->pers.inventory[ent->client->ammo_index]--;
 }
 
 
 void Weapon_Railgun (edict_t *ent)
 {
 	static int	pause_frames[]	= {56, 0};
-	static int	fire_frames[]	= {4,5,6,7, 0};
+	static int	fire_frames[]	= {4, 0};
 
-	Weapon_Generic (ent, 3, 8, 56, 61, pause_frames, fire_frames, weapon_railgun_fire);
+	// Gunslinger Level 10
+	if (ent->client->pers.playerClass == 1) {
+		Weapon_Generic(ent, 3, 9, 56, 61, pause_frames, fire_frames, weapon_railgun_fire);
+	}
+	else {
+		Weapon_Generic(ent, 3, 18, 56, 61, pause_frames, fire_frames, weapon_railgun_fire);
+	}
 }
 
 

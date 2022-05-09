@@ -1044,6 +1044,7 @@ void Cmd_Class_f(edict_t* ent)
 {	
 	char* name;
 	gclient_t* cl;
+	char	string[1024];
 
 	cl = ent->client;
 
@@ -1055,20 +1056,12 @@ void Cmd_Class_f(edict_t* ent)
 		cl->pers.health = 75;
 		ent->max_health = 75;
 		ent->health = ent->max_health;
+		ent->moveinfo.move_speed = 1;
 		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.move_speed);
 		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.current_speed);
 		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.speed);
 		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
-		cl->player_class = 1;
-	}
-
-	else if (Q_stricmp(name, "beserker") == 0) {
-		cl->pers.max_health = 200;
-		cl->pers.health = 200;
-		ent->max_health = 200;
-		ent->health = ent->max_health;
-		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
-		cl->player_class = 3;
+		cl->pers.playerClass = 1;
 	}
 
 	else if (Q_stricmp(name, "demo") == 0) {
@@ -1077,9 +1070,45 @@ void Cmd_Class_f(edict_t* ent)
 		ent->max_health = 125;
 		ent->health = ent->max_health;
 		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
-		cl->player_class = 2;
+		cl->pers.playerClass = 2;
 	}
-	
+
+	else if (Q_stricmp(name, "beserker") == 0) {
+		cl->pers.max_health = 200;
+		cl->pers.health = 200;
+		ent->max_health = 200;
+		ent->health = ent->max_health;
+		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
+		cl->pers.playerClass = 3;
+	}
+
+}
+
+void Cmd_Spawn_f(edict_t* self)
+{
+	char* name;
+	gclient_t* cl;
+	edict_t* ent;
+
+	cl = self->client;
+
+	name = gi.args();
+
+	ent = G_Spawn();
+	ent->classname = "monster_soldier";
+	ent->s.origin[0] = self->s.origin[0] + 50;
+	ent->s.origin[1] = self->s.origin[1];
+	ent->s.origin[2] = self->s.origin[2];
+	//ent->s.angles[1] = -140;
+	ED_CallSpawn(ent);
+
+	/*
+	if (gi.argv(1)) {
+		memcpy(gi.args(0), "shotgun", 8);
+		Cmd_Give_f(self);
+	}
+	*/
+
 }
 
 
@@ -1174,6 +1203,8 @@ void ClientCommand (edict_t *ent)
 		Cmd_BuyMenu_f(ent);
 	else if (Q_stricmp(cmd, "class") == 0)
 		Cmd_Class_f(ent);
+	else if (Q_stricmp(cmd, "spawn") == 0)
+		Cmd_Spawn_f(ent);
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }

@@ -643,7 +643,6 @@ void SpawnEntities (char *mapname, char *entities, char *spawnpoint)
 	endif
 
 #endif
-int l = 5;
 char *single_statusbar = 
 "yb	-24 "
 
@@ -652,6 +651,7 @@ char *single_statusbar =
 "hnum "
 "xv	50 "
 "pic 0 "
+
 
 // ammo
 "if 2 "
@@ -674,6 +674,18 @@ char *single_statusbar =
 "	xv	296 "
 "	pic 6 "
 "endif "
+
+// level
+"xv	300 "
+"num 5 18 "
+"xv	380 "
+"pic 0 "
+
+// dosh
+"xv	400 "
+"num 5 19 "
+"xv	480 "
+"pic 0 "
 
 "yb	-50 "
 

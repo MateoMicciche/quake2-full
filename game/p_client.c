@@ -25,6 +25,8 @@ void ClientUserinfoChanged (edict_t *ent, char *userinfo);
 void SP_misc_teleporter_dest (edict_t *ent);
 
 int player_level = 1;
+int timer = 0;
+int wave = 1;
 
 //
 // Gross, ugly, disgustuing hack section
@@ -103,14 +105,21 @@ static void SP_CreateCoopSpots (edict_t *self)
 	}
 }
 
-
 /*QUAKED info_player_start (1 0 0) (-16 -16 -24) (16 16 32)
 The normal starting point for a level.
 */
 void SP_info_player_start(edict_t *self)
 {
+	// Map hack so player goes to this map when loading in
+	if (Q_stricmp(level.mapname, "base1") == 0) {
+		self->map = "q2dm1";
+		BeginIntermission(self);
+		SP_target_changelevel(self);
+	}
+
 	if (!coop->value)
 		return;
+
 	if(Q_stricmp(level.mapname, "security") == 0)
 	{
 		// invoke one of our gross, ugly, disgusting hacks
@@ -123,7 +132,7 @@ void SP_info_player_start(edict_t *self)
 potential spawning position for deathmatch games
 */
 void SP_info_player_deathmatch(edict_t *self)
-{
+{		
 	if (!deathmatch->value)
 	{
 		G_FreeEdict (self);
@@ -609,6 +618,9 @@ but is called after each death and level change in deathmatch
 void InitClientPersistant (gclient_t *client)
 {
 	gitem_t		*item;
+	int			index;
+	int			len;
+	int			i;
 
 	memset (&client->pers, 0, sizeof(client->pers));
 
@@ -634,6 +646,13 @@ void InitClientPersistant (gclient_t *client)
 	client->pers.level = 1;
 	client->pers.xp = 0;
 	client->pers.dosh = 1000;
+	len = game.num_items;
+	index = ITEM_INDEX(FindItem("Buy Shotgun"));
+	for (i = index; i < len; i++) {
+		client->pers.inventory[i] = 1;
+		client->pers.shop[i] = 1;
+	}
+	client->pers.playerClass = 0;
 }
 
 
@@ -1566,6 +1585,62 @@ void PrintPmove (pmove_t *pm)
 	Com_Printf ("sv %3i:%i %i\n", pm->cmd.impulse, c1, c2);
 }
 
+
+void SpawnWaves(int timer) {
+	edict_t* ent;
+	char* name[32];
+
+	if (level.total_monsters == 4) {
+		return;
+	}
+
+	if (wave % 5 == 0) {
+		memcpy(name, "monster_mutant", 15);
+	}
+	else {
+		memcpy(name, "monster_soldier", 16);
+	}
+
+	ent = G_Spawn();
+	ent->classname = name;
+	ent->s.origin[0] = 1455;
+	ent->s.origin[1] = 869;
+	ent->s.origin[2] = 494;
+	ent->targetname = "q2dm1";
+	ent->s.angles[1] = -140;
+	ED_CallSpawn(ent);
+
+	ent = G_Spawn();
+	ent->classname = name;
+	ent->s.origin[0] = 1500;
+	ent->s.origin[1] = 919;
+	ent->s.origin[2] = 494;
+	ent->targetname = "q2dm1";
+	ent->s.angles[1] = -140;
+	ED_CallSpawn(ent);
+
+	ent = G_Spawn();
+	ent->classname = name;
+	ent->s.origin[0] = 1320;
+	ent->s.origin[1] = 415;
+	ent->s.origin[2] = 494;
+	ent->targetname = "q2dm1";
+	ent->s.angles[1] = 109;
+	ED_CallSpawn(ent);
+
+	ent = G_Spawn();
+	ent->classname = name;
+	ent->s.origin[0] = 887;
+	ent->s.origin[1] = 437;
+	ent->s.origin[2] = 494;
+	ent->targetname = "q2dm1";
+	ent->s.angles[1] = 36;
+	ED_CallSpawn(ent);
+
+
+	return;
+
+}
 /*
 ==============
 ClientThink
@@ -1574,6 +1649,7 @@ This will be called once for each client frame, which will
 usually be a couple times for each server frame.
 ==============
 */
+
 void ClientThink (edict_t *ent, usercmd_t *ucmd)
 {
 	gclient_t	*client;
@@ -1583,6 +1659,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 
 	level.current_entity = ent;
 	client = ent->client;
+
 
 	if (level.intermissiontime)
 	{
@@ -1747,6 +1824,29 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		other = g_edicts + i;
 		if (other->inuse && other->client->chase_target == ent)
 			UpdateChaseCam(other);
+	}
+
+	timer = level.framenum * FRAMETIME;
+	if (Q_stricmp(level.mapname, "q2dm1") == 0) {
+
+		if (timer % 15 != 0)
+		{
+			if (level.killed_monsters >= 4) {
+				level.total_monsters = 0;
+				level.killed_monsters = 0;
+			}
+			//gi.bprintf(PRINT_MEDIUM, "Time: %i\n", timer);
+		}
+		else if (timer % 15 == 0) {
+			
+			if (level.total_monsters == 0) {
+				wave += 1;
+				gi.bprintf(PRINT_MEDIUM, "Wave %i\n", wave);
+				SpawnWaves(5);
+			}
+			gi.bprintf(PRINT_MEDIUM, "Spawn now Time: %i\n", timer);
+			return;
+		}
 	}
 }
 

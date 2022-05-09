@@ -400,6 +400,12 @@ void G_SetStats (edict_t *ent)
 		ent->client->ps.stats[STAT_AMMO_ICON] = gi.imageindex (item->icon);
 		ent->client->ps.stats[STAT_AMMO] = ent->client->pers.inventory[ent->client->ammo_index];
 	}
+
+	// PLAYERS LEVEL
+	ent->client->ps.stats[STAT_LEVEL] = ent->client->pers.level;
+
+	// PLAYERS DOSH
+	ent->client->ps.stats[STAT_DOSH] = ent->client->pers.dosh;
 	
 	//
 	// armor

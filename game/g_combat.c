@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // g_combat.c
 
 #include "g_local.h"
-//int killStack;
+int			consAttk;
 
 /*
 ============
@@ -88,26 +88,25 @@ qboolean CanDamage (edict_t *targ, edict_t *inflictor)
 void CheckLevel(edict_t* player) {
 	int currentXP;
 
-	currentXP = player->client->xp;
-	gi.bprintf(PRINT_MEDIUM, "%i total xp\n", player->client->xp);
+	currentXP = player->client->pers.xp;
+	gi.bprintf(PRINT_MEDIUM, "%i total xp\n", player->client->pers.xp);
+	gi.bprintf(PRINT_MEDIUM, "%i current level\n", player->client->pers.level);
 	if (currentXP == 50) {
-		player->client->xp = 0;
-		player->client->level++;
+		player->client->pers.xp = 0;
+		player->client->pers.level += 1;
 	}
 	
 	// Beserker Level 5
-	if (player->client->player_class == 3) {
+	if (player->client->pers.playerClass == 3) {
 		player->max_health = 300;
 		player->health = player->max_health;
 	}
 
 	// Beserker Level 10
-	if (player->client->player_class == 3) {
+	if (player->client->pers.playerClass == 3) {
 		player->health += 5;
 	}
-	//gi.bprintf(PRINT_MEDIUM, "%f speed\n", player->speed);
-	//gi.bprintf(PRINT_MEDIUM, "%f move speed\n", player->moveinfo.move_speed);
-	//gi.bprintf(PRINT_MEDIUM, "%f current speed\n", player->moveinfo.current_speed);
+
 
 }
 
@@ -138,14 +137,10 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 
 
 			if (attacker->client) {
-				gi.bprintf(PRINT_MEDIUM, "%i \n", attacker->client->level);
+				gi.bprintf(PRINT_MEDIUM, "%i \n", attacker->client->pers.level);
 				gi.bprintf(PRINT_MEDIUM, "%s \n", targ->classname);
-				gi.bprintf(PRINT_MEDIUM, "%f speed\n", attacker->yaw_speed);
-				gi.bprintf(PRINT_MEDIUM, "%f speed\n", attacker->velocity[2]);
-				gi.bprintf(PRINT_MEDIUM, "%f move speed\n", attacker->moveinfo.move_speed);
-				gi.bprintf(PRINT_MEDIUM, "%f current speed\n", attacker->moveinfo.current_speed);
 				
-				attacker->client->xp += 10;
+				attacker->client->pers.xp += 10;
 				CheckLevel(attacker);
 			}
 			if (coop->value && attacker->client)
@@ -428,19 +423,42 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 	int			asave;
 	int			psave;
 	int			te_sparks;
+	int			consAttkMulti;
 
 	if (!targ->takedamage)
 		return;
+	// Gunslinger Level 15
+	if ( attacker->client && (targ->svflags & SVF_MONSTER) && !(targ->svflags & SVF_DEADMONSTER)) {
+		if (attacker->client->pers.playerClass == 1) {
+			if (consAttk < 10) {
+				consAttk += 1;
+			}
+			//gi.bprintf(PRINT_MEDIUM, "Damage %i\n", damage);
+			consAttkMulti = (0.2 * consAttk) + 1;
+			damage = damage * consAttkMulti;
+			//gi.bprintf(PRINT_MEDIUM, "New Damage %i\n", damage);
 
-	// Demolitionist Level 5
-	if (Q_stricmp(inflictor->classname, "rocket") == 0 && targ->client->player_class == 2) {
-		damage = 0;
+			//gi.bprintf(PRINT_MEDIUM, "Consecutive Attack %i\n", consAttk);
+		}
+	}
+
+	// Demolitionist Level 5 && Gunslinger Level 15
+	if (targ->client) {
+		if (Q_stricmp(inflictor->classname, "rocket") == 0 && targ->client->pers.playerClass == 2) {
+			gi.bprintf(PRINT_MEDIUM, "Damage should be 0\n");
+			damage = 0;
+		}
+		else if (targ->client->pers.playerClass == 1) {
+			consAttk = 0;
+			//gi.bprintf(PRINT_MEDIUM, "Consecutive Attack %i\n", consAttk);
+		}
 	}
 
 	// Beserker Level 15
-	if (targ->client && targ->client->player_class == 3) {
-		damage = 0;
-		gi.bprintf(PRINT_MEDIUM, "No damage");
+	if (targ->client && targ->client->pers.playerClass == 3) {
+		gi.bprintf(PRINT_MEDIUM, "Before Perk %i\n", damage);
+		damage = damage*0.6;
+		gi.bprintf(PRINT_MEDIUM, "After Perk %i\n", damage);
 	}
 
 	// friendly fire avoidance
@@ -462,7 +480,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 	if (skill->value == 0 && deathmatch->value == 0 && targ->client)
 	{
 		damage *= 0.5;
-		if (!damage)
+		if (!damage && targ->client->pers.playerClass != 2)
 			damage = 1;
 	}
 

@@ -687,33 +687,36 @@ qboolean Pickup_Dosh(edict_t* ent, edict_t* other)
 {	
 	gi.bprintf(PRINT_MEDIUM, "We have picked up dosh\n");
 	if (other->client) {
-		gi.bprintf(PRINT_MEDIUM, "Hmmmmm\n");
-		other->client->dosh += 100;
-		gi.bprintf(PRINT_MEDIUM, "%i current dosh", other->client->dosh);
+		other->client->pers.dosh += 100;
+		gi.bprintf(PRINT_MEDIUM, "%i current dosh", other->client->pers.dosh);
 	}
-	
+	return true;
 }
 
 void Buy_Shotgun(edict_t* ent, gitem_t* item)
 {
 	int		index;
 	size_t	itemStringSize;
-	char weaponTxt[20];
+	//char weaponTxt[20];
 
 	itemStringSize = strlen(item->pickup_name);
 	index = ITEM_INDEX(FindItem(item->pickup_name));
 
-	memcpy(weaponTxt, &item->pickup_name[4], itemStringSize-4);
-	weaponTxt[itemStringSize - 4] = '\0';
+	memcpy(gi.args(0), &item->pickup_name[4], itemStringSize-4);
+	gi.args(0)[itemStringSize - 4] = '\0';
 
 	//index = ITEM_INDEX(FindItem(""));
 	ent->client->pers.inventory[ITEM_INDEX(item)]--;
 
+	gi.bprintf(PRINT_MEDIUM, "User has purchased %s\n", gi.args(1));
+	Cmd_Give_f(ent);
+	/*
 	index = ITEM_INDEX(FindItem(weaponTxt));
 	ent->client->pers.inventory[index]++;
 	ValidateSelectedItem(ent);
+	*/
 
-	gi.bprintf(PRINT_MEDIUM, "User has purchased %s\n", weaponTxt);
+	//gi.bprintf(PRINT_MEDIUM, "User has purchased %s\n", weaponTxt);
 }
 
 //======================================================================
@@ -2348,6 +2351,27 @@ tank commander's head
 		NULL,
 		/* icon */		"p_quad",
 		/* pickup */	"Buy BFG10K",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
+		"item_buy_ammo",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy Ammo",
 		/* width */		2,
 		0,
 		NULL,

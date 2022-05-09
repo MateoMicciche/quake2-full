@@ -1254,11 +1254,14 @@ void SP_monster_soldier_x (edict_t *self)
 */
 void SP_monster_soldier_light (edict_t *self)
 {
+	/*
 	if (deathmatch->value)
 	{
 		G_FreeEdict (self);
 		return;
 	}
+	*/
+
 
 	SP_monster_soldier_x (self);
 
@@ -1276,12 +1279,14 @@ void SP_monster_soldier_light (edict_t *self)
 /*QUAKED monster_soldier (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight
 */
 void SP_monster_soldier (edict_t *self)
-{
+{	
+	/*
 	if (deathmatch->value)
 	{
 		G_FreeEdict (self);
 		return;
 	}
+	*/
 
 	SP_monster_soldier_x (self);
 
@@ -1298,11 +1303,13 @@ void SP_monster_soldier (edict_t *self)
 */
 void SP_monster_soldier_ss (edict_t *self)
 {
+	/*
 	if (deathmatch->value)
 	{
 		G_FreeEdict (self);
 		return;
 	}
+	*/
 
 	SP_monster_soldier_x (self);
 
