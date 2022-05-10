@@ -4,6 +4,7 @@
 1. [Description](#Description)
 1. [Deliverables](#Deliverables)
 1. [Changes](#Changes)
+1. [How-To-Install](#How-To-Install)
 3. [Testing](#Testing)
 
 ## Description
@@ -30,6 +31,22 @@ Below are the deliverables for this mod:
 #### Money is gathered by killing enemeies and picking up the item "dosh" (Will automatically go to player if not spawned in correctly)
 #### Player can level up can unlock perks by killing enemies
 #### Help included to assist player with understanding how to play the game
+
+## How-To-Install
+
+To install, download the zip of the respoitory. Then inside the zip, look for the folder named "modFiles". Once you find it copy the files withun and find the
+base folder for Quake 2. If using Steam, this can be found usually in the path "C:\Program Files (x86)\Steam\steamapps\common\Quake 2". Adjust your path according to your drive or your distributor. Once you find the Quake 2 folder, make a new folder and name it whatever you like. In this case, let's name it "Mod". Paste the files you found earlier into this new folder. Once that is done, right click on the shortcut, go to properties, and view the shortcut tab. Where it says "Target". Here you will need to change the target for the mod folder. It should currently say:
+- "E:\Steam\steamapps\common\Quake 2\quake2.exe" +set game KF2 
+<a/>
+What this is doing is it is launching Quake 2 with the contents within KF2 instead of the baseq2 folder. Here, you will want to replace "KF2" with the name of the new folder you created. In this case, I called my new folder "Mod", so I would change the target path as so:
+
+<a/>
+
+- "E:\Steam\steamapps\common\Quake 2\quake2.exe" +set game Mod' 
+<a/>
+If you want, you could also rename the folder to match the target folder, that way you don't have to change the target path at all. Once finished, you can click on the shortcut and start playing the mod.
+
+
 
 ## Testing
 Below explains how to test each deliverable:
