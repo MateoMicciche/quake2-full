@@ -42,6 +42,20 @@ static void P_ProjectSource (gclient_t *client, vec3_t point, vec3_t distance, v
 	G_ProjectSource (point, _distance, forward, right, result);
 }
 
+// MOD
+void ConsumeAmmo(edict_t* ent, int consume) {
+
+	if (ent->client) {
+		if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 5) {
+			if (random() <= 0.70) {
+				ent->client->pers.inventory[ent->client->ammo_index] -= consume;
+			}
+		}
+		else {
+			ent->client->pers.inventory[ent->client->ammo_index] -= consume;
+		}
+	}
+}
 
 /*
 ===============
@@ -557,6 +571,11 @@ void weapon_grenade_fire (edict_t *ent, qboolean held)
 	if (is_quad)
 		damage *= 4;
 
+	// Demolitionist Level 10
+	if (ent->client->pers.playerClass == 2 && ent->client->pers.level >= 10) {
+		radius *= 2;
+	}
+
 	VectorSet(offset, 8, 8, ent->viewheight-8);
 	AngleVectors (ent->client->v_angle, forward, right, NULL);
 	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
@@ -565,8 +584,9 @@ void weapon_grenade_fire (edict_t *ent, qboolean held)
 	speed = GRENADE_MINSPEED + (GRENADE_TIMER - timer) * ((GRENADE_MAXSPEED - GRENADE_MINSPEED) / GRENADE_TIMER);
 	fire_grenade2 (ent, start, forward, damage, speed, timer, radius, held);
 
-	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		ent->client->pers.inventory[ent->client->ammo_index]--;
+	// Gunslinger Level 5
+	if (!((int)dmflags->value & DF_INFINITE_AMMO))
+		ConsumeAmmo(ent, 1);
 
 	ent->client->grenade_time = level.time + 1.0;
 
@@ -718,6 +738,11 @@ void weapon_grenadelauncher_fire (edict_t *ent)
 	if (is_quad)
 		damage *= 4;
 
+	// Demolitionist Level 10
+	if (ent->client->pers.playerClass == 2 && ent->client->pers.level >= 10) {
+		radius *= 2;
+	}
+
 	VectorSet(offset, 8, 8, ent->viewheight-8);
 	AngleVectors (ent->client->v_angle, forward, right, NULL);
 	P_ProjectSource (ent->client, ent->s.origin, offset, forward, right, start);
@@ -736,8 +761,9 @@ void weapon_grenadelauncher_fire (edict_t *ent)
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 
-	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		ent->client->pers.inventory[ent->client->ammo_index]--;
+	// Gunslinger Level 5
+	if (!((int)dmflags->value & DF_INFINITE_AMMO))
+		ConsumeAmmo(ent, 1);
 }
 
 void Weapon_GrenadeLauncher (edict_t *ent)
@@ -745,7 +771,13 @@ void Weapon_GrenadeLauncher (edict_t *ent)
 	static int	pause_frames[]	= {34, 51, 59, 0};
 	static int	fire_frames[]	= {6, 0};
 
-	Weapon_Generic (ent, 5, 16, 59, 64, pause_frames, fire_frames, weapon_grenadelauncher_fire);
+	// Gunslinger Level 10
+	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
+		Weapon_Generic(ent, 5, 8, 59, 64, pause_frames, fire_frames, weapon_grenadelauncher_fire);
+	}
+	else {
+		Weapon_Generic(ent, 5, 16, 59, 64, pause_frames, fire_frames, weapon_grenadelauncher_fire);
+	}
 }
 
 /*
@@ -769,7 +801,7 @@ void Weapon_RocketLauncher_Fire (edict_t *ent)
 	damage_radius = 120;
 
 	// Demolitionist Level 10
-	if (ent->client->pers.playerClass == 2) {
+	if (ent->client->pers.playerClass == 2 && ent->client->pers.level >= 10) {
 		radius_damage = 240;
 		damage_radius = 240;
 	}
@@ -799,8 +831,9 @@ void Weapon_RocketLauncher_Fire (edict_t *ent)
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 
-	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		ent->client->pers.inventory[ent->client->ammo_index]--;
+	// Gunslinger Level 5
+	if (!((int)dmflags->value & DF_INFINITE_AMMO))
+		ConsumeAmmo(ent, 1);
 }
 
 void Weapon_RocketLauncher (edict_t *ent)
@@ -808,7 +841,13 @@ void Weapon_RocketLauncher (edict_t *ent)
 	static int	pause_frames[]	= {25, 33, 42, 50, 0};
 	static int	fire_frames[]	= {5, 0};
 
-	Weapon_Generic (ent, 4, 12, 50, 54, pause_frames, fire_frames, Weapon_RocketLauncher_Fire);
+	// Gunslinger Level 10
+	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
+		Weapon_Generic(ent, 4, 6, 50, 54, pause_frames, fire_frames, Weapon_RocketLauncher_Fire);
+	}
+	else {
+		Weapon_Generic(ent, 4, 12, 50, 54, pause_frames, fire_frames, Weapon_RocketLauncher_Fire);
+	}
 }
 
 
@@ -868,7 +907,13 @@ void Weapon_Blaster (edict_t *ent)
 	static int	pause_frames[]	= {19, 32, 0};
 	static int	fire_frames[]	= {5, 0};
 
-	Weapon_Generic (ent, 4, 8, 52, 55, pause_frames, fire_frames, Weapon_Blaster_Fire);
+	// Gunslinger Level 10
+	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
+		Weapon_Generic(ent, 4, 5, 52, 55, pause_frames, fire_frames, Weapon_Blaster_Fire);
+	}
+	else {
+		Weapon_Generic(ent, 4, 8, 52, 55, pause_frames, fire_frames, Weapon_Blaster_Fire);
+	}
 }
 
 
@@ -912,8 +957,10 @@ void Weapon_HyperBlaster_Fire (edict_t *ent)
 			else
 				damage = 20;
 			Blaster_Fire (ent, offset, damage, true, effect);
-			if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-				ent->client->pers.inventory[ent->client->ammo_index]--;
+
+			// Gunslinger Level 5
+			if (!((int)dmflags->value & DF_INFINITE_AMMO))
+				ConsumeAmmo(ent, 1);
 
 			ent->client->anim_priority = ANIM_ATTACK;
 			if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
@@ -946,7 +993,13 @@ void Weapon_HyperBlaster (edict_t *ent)
 	static int	pause_frames[]	= {0};
 	static int	fire_frames[]	= {6, 7, 8, 9, 10, 11, 0};
 
-	Weapon_Generic (ent, 5, 20, 49, 53, pause_frames, fire_frames, Weapon_HyperBlaster_Fire);
+	// Gunslinger Level 10
+	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
+		Weapon_Generic(ent, 5, 10, 49, 53, pause_frames, fire_frames, Weapon_HyperBlaster_Fire);
+	}
+	else {
+		Weapon_Generic(ent, 5, 20, 49, 53, pause_frames, fire_frames, Weapon_HyperBlaster_Fire);
+	}
 }
 
 /*
@@ -1029,9 +1082,7 @@ void Machinegun_Fire (edict_t *ent)
 
 	// Gunslinger Level 5
 	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		if (random() <= 0.82) {
-			ent->client->pers.inventory[ent->client->ammo_index]--;
-		}
+		ConsumeAmmo(ent, 1);
 
 	ent->client->anim_priority = ANIM_ATTACK;
 	if (ent->client->ps.pmove.pm_flags & PMF_DUCKED)
@@ -1051,7 +1102,13 @@ void Weapon_Machinegun (edict_t *ent)
 	static int	pause_frames[]	= {23, 45, 0};
 	static int	fire_frames[]	= {4, 5, 0};
 
-	Weapon_Generic (ent, 3, 5, 45, 49, pause_frames, fire_frames, Machinegun_Fire);
+	// Gunslinger Level 10
+	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
+		Weapon_Generic(ent, 3, 4, 45, 49, pause_frames, fire_frames, Machinegun_Fire);
+	}
+	else {
+		Weapon_Generic(ent, 3, 5, 45, 49, pause_frames, fire_frames, Machinegun_Fire);
+	}
 }
 
 void Chaingun_Fire (edict_t *ent)
@@ -1169,8 +1226,9 @@ void Chaingun_Fire (edict_t *ent)
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 
-	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		ent->client->pers.inventory[ent->client->ammo_index] -= shots;
+	// Gunslinger Level 5
+	if (!((int)dmflags->value & DF_INFINITE_AMMO))
+		ConsumeAmmo(ent, shots);
 }
 
 
@@ -1179,7 +1237,7 @@ void Weapon_Chaingun (edict_t *ent)
 	static int	pause_frames[]	= {38, 43, 51, 61, 0};
 	static int	fire_frames[]	= {5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 0};
 
-	Weapon_Generic (ent, 4, 31, 61, 64, pause_frames, fire_frames, Chaingun_Fire);
+	Weapon_Generic(ent, 4, 31, 61, 64, pause_frames, fire_frames, Chaingun_Fire);
 }
 
 
@@ -1233,8 +1291,9 @@ void weapon_shotgun_fire (edict_t *ent)
 	ent->client->ps.gunframe++;
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 
-	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		ent->client->pers.inventory[ent->client->ammo_index]--;
+	// Gunslinger Level 5
+	if (!((int)dmflags->value & DF_INFINITE_AMMO))
+		ConsumeAmmo(ent, 1);
 }
 
 void Weapon_Shotgun (edict_t *ent)
@@ -1242,7 +1301,13 @@ void Weapon_Shotgun (edict_t *ent)
 	static int	pause_frames[]	= {22, 28, 34, 0};
 	static int	fire_frames[]	= {8, 9, 0};
 
-	Weapon_Generic (ent, 7, 18, 36, 39, pause_frames, fire_frames, weapon_shotgun_fire);
+	// Gunslinger Level 10
+	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
+		Weapon_Generic(ent, 7, 9, 36, 39, pause_frames, fire_frames, weapon_shotgun_fire);
+	}
+	else {
+		Weapon_Generic(ent, 7, 18, 36, 39, pause_frames, fire_frames, weapon_shotgun_fire);
+	}
 }
 
 
@@ -1287,8 +1352,9 @@ void weapon_supershotgun_fire (edict_t *ent)
 	ent->client->ps.gunframe++;
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 
-	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		ent->client->pers.inventory[ent->client->ammo_index] -= 2;
+	// Gunslinger Level 5
+	if (!((int)dmflags->value & DF_INFINITE_AMMO))
+		ConsumeAmmo(ent, 2);
 }
 
 void Weapon_SuperShotgun (edict_t *ent)
@@ -1296,7 +1362,13 @@ void Weapon_SuperShotgun (edict_t *ent)
 	static int	pause_frames[]	= {29, 42, 57, 0};
 	static int	fire_frames[]	= {7, 0};
 
-	Weapon_Generic (ent, 6, 17, 57, 61, pause_frames, fire_frames, weapon_supershotgun_fire);
+	// Gunslinger Level 10
+	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
+		Weapon_Generic(ent, 6, 9, 57, 61, pause_frames, fire_frames, weapon_supershotgun_fire);
+	}
+	else {
+		Weapon_Generic(ent, 6, 17, 57, 61, pause_frames, fire_frames, weapon_supershotgun_fire);
+	}
 }
 
 
@@ -1352,8 +1424,9 @@ void weapon_railgun_fire (edict_t *ent)
 	ent->client->ps.gunframe++;
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 
-	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		ent->client->pers.inventory[ent->client->ammo_index]--;
+	// Gunslinger Level 5
+	if (!((int)dmflags->value & DF_INFINITE_AMMO))
+		ConsumeAmmo(ent, 1);
 }
 
 
@@ -1363,7 +1436,7 @@ void Weapon_Railgun (edict_t *ent)
 	static int	fire_frames[]	= {4, 0};
 
 	// Gunslinger Level 10
-	if (ent->client->pers.playerClass == 1) {
+	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
 		Weapon_Generic(ent, 3, 9, 56, 61, pause_frames, fire_frames, weapon_railgun_fire);
 	}
 	else {
@@ -1434,8 +1507,9 @@ void weapon_bfg_fire (edict_t *ent)
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 
-	if (! ( (int)dmflags->value & DF_INFINITE_AMMO ) )
-		ent->client->pers.inventory[ent->client->ammo_index] -= 50;
+	// Gunslinger Level 5
+	if (!((int)dmflags->value & DF_INFINITE_AMMO))
+		ConsumeAmmo(ent, 50);
 }
 
 void Weapon_BFG (edict_t *ent)
@@ -1443,7 +1517,13 @@ void Weapon_BFG (edict_t *ent)
 	static int	pause_frames[]	= {39, 45, 50, 55, 0};
 	static int	fire_frames[]	= {9, 17, 0};
 
-	Weapon_Generic (ent, 8, 32, 55, 58, pause_frames, fire_frames, weapon_bfg_fire);
+	// Gunslinger Level 10
+	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
+		Weapon_Generic(ent, 8, 16, 55, 58, pause_frames, fire_frames, weapon_bfg_fire);
+	}
+	else {
+		Weapon_Generic(ent, 8, 32, 55, 58, pause_frames, fire_frames, weapon_bfg_fire);
+	}
 }
 
 

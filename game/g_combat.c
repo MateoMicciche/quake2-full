@@ -97,14 +97,22 @@ void CheckLevel(edict_t* player) {
 	}
 	
 	// Beserker Level 5
-	if (player->client->pers.playerClass == 3) {
-		player->max_health = 300;
-		player->health = player->max_health;
+	if (player->client->pers.playerClass == 3 && player->client->pers.level >= 5) {
+		if (player->max_health != 300) {
+			player->max_health = 300;
+			player->health = player->max_health;
+		}
+
 	}
 
 	// Beserker Level 10
-	if (player->client->pers.playerClass == 3) {
-		player->health += 5;
+	if (player->client->pers.playerClass == 3 && player->client->pers.level >= 10) {
+		if (player->health + 5 <= player->max_health) {
+			player->health += 5;
+		}
+		else if (player->health < 300 && player->health > 296) {
+			player->health = player->max_health;
+		}
 	}
 
 
@@ -117,6 +125,9 @@ Killed
 */
 void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, vec3_t point)
 {
+	gitem_t* it;
+	edict_t* it_ent;
+
 	if (targ->health < -999)
 		targ->health = -999;
 
@@ -131,6 +142,15 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 		if (!(targ->monsterinfo.aiflags & AI_GOOD_GUY))
 		{
 			level.killed_monsters++;
+
+			it = FindItem("Dosh");
+			it_ent = G_Spawn();
+			it_ent->classname = it->classname;
+			it_ent->s.origin[0] = point[0];
+			it_ent->s.origin[1] = point[1];
+			it_ent->s.origin[2] = point[2];
+			SpawnItem(it_ent, it);
+
 			//killStack++;
 			gi.bprintf(PRINT_MEDIUM, "YOOOO \n");
 			//gi.bprintf(PRINT_MEDIUM, "%i \n", killStack);
@@ -427,9 +447,12 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 
 	if (!targ->takedamage)
 		return;
+
+	//gi.bprintf(PRINT_MEDIUM, "Classname: %s\n", inflictor->classname);
+
 	// Gunslinger Level 15
 	if ( attacker->client && (targ->svflags & SVF_MONSTER) && !(targ->svflags & SVF_DEADMONSTER)) {
-		if (attacker->client->pers.playerClass == 1) {
+		if (attacker->client->pers.playerClass == 1 && attacker->client->pers.level >= 15) {
 			if (consAttk < 10) {
 				consAttk += 1;
 			}
@@ -441,24 +464,27 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 			//gi.bprintf(PRINT_MEDIUM, "Consecutive Attack %i\n", consAttk);
 		}
 	}
-
+	// 
 	// Demolitionist Level 5 && Gunslinger Level 15
 	if (targ->client) {
-		if (Q_stricmp(inflictor->classname, "rocket") == 0 && targ->client->pers.playerClass == 2) {
-			gi.bprintf(PRINT_MEDIUM, "Damage should be 0\n");
-			damage = 0;
+		if (targ->client->pers.playerClass == 2 && targ->client->pers.level >= 5) {
+			if (Q_stricmp(inflictor->classname, "rocket") == 0 || Q_stricmp(inflictor->classname, "worldspawn") == 0 || 
+				Q_stricmp(inflictor->classname, "grenade") == 0 || Q_stricmp(inflictor->classname, "hgrenade") == 0) {
+				gi.bprintf(PRINT_MEDIUM, "Damage should be 0\n");
+				damage = 0;
+			}
 		}
-		else if (targ->client->pers.playerClass == 1) {
+		else if (targ->client->pers.playerClass == 1 && attacker->client->pers.level >= 15) {
 			consAttk = 0;
 			//gi.bprintf(PRINT_MEDIUM, "Consecutive Attack %i\n", consAttk);
 		}
 	}
 
 	// Beserker Level 15
-	if (targ->client && targ->client->pers.playerClass == 3) {
-		gi.bprintf(PRINT_MEDIUM, "Before Perk %i\n", damage);
+	if (targ->client && targ->client->pers.playerClass == 3 && targ->client->pers.level >= 15) {
+		//gi.bprintf(PRINT_MEDIUM, "Before Perk %i\n", damage);
 		damage = damage*0.6;
-		gi.bprintf(PRINT_MEDIUM, "After Perk %i\n", damage);
+		//gi.bprintf(PRINT_MEDIUM, "After Perk %i\n", damage);
 	}
 
 	// friendly fire avoidance

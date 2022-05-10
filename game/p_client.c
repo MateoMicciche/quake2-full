@@ -700,6 +700,10 @@ void FetchClientEntData (edict_t *ent)
 		ent->client->resp.score = ent->client->pers.score;
 }
 
+void GiveDosh(int inc) {
+	game.clients[0].pers.dosh += inc;
+}
+
 
 
 /*
@@ -1915,6 +1919,6 @@ int GetPlayerLevel() {
 	return player_level;
 }
 
-void SetPlayerLevel(int new_level) {
-	player_level = new_level;
+void SetPlayerLevel(edict_t* player, int new_level) {
+	player->client->pers.level = new_level;
 }

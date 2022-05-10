@@ -816,9 +816,11 @@ void ChasePrev(edict_t *ent);
 void GetChaseTarget(edict_t *ent);
 
 int GetPlayerLevel();
+void SetPlayerLevel(edict_t* player, int new_level);
 void SP_target_changelevel(edict_t* ent);
 void ED_CallSpawn(edict_t* ent);
 void Cmd_Give_f(self);
+void GiveDosh(int inc);
 
 //============================================================================
 

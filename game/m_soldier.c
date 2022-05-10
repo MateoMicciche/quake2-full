@@ -1144,8 +1144,6 @@ mmove_t soldier_move_death6 = {FRAME_death601, FRAME_death610, soldier_frames_de
 void soldier_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damage, vec3_t point)
 {
 	int		n;
-	gitem_t* it;
-	edict_t* it_ent;
 
 // check for gib
 	if (self->health <= self->gib_health)
@@ -1175,18 +1173,11 @@ void soldier_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int dama
 	else // (self->s.skinnum == 5)
 		gi.sound (self, CHAN_VOICE, sound_death_ss, 1, ATTN_NORM, 0);
 
-	gi.bprintf(PRINT_MEDIUM, "%s just died and dropped something \n", self->classname);
+	//gi.bprintf(PRINT_MEDIUM, "%s just died and dropped something \n", self->classname);
 	//gi.bprintf(PRINT_MEDIUM, "%f \n", point[0]);
 	//gi.bprintf(PRINT_MEDIUM, "%f \n", point[1]);
 	//gi.bprintf(PRINT_MEDIUM, "%f \n", point[2]);
 
-	it = FindItem("Dosh");
-	it_ent = G_Spawn();
-	it_ent->classname = it->classname;
-	it_ent->s.origin[0] = point[0];
-	it_ent->s.origin[1] = point[1];
-	it_ent->s.origin[2] = point[2];
-	SpawnItem(it_ent, it);
 
 	if (fabs((self->s.origin[2] + self->viewheight) - point[2]) <= 4)
 	{

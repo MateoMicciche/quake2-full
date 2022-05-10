@@ -38,7 +38,10 @@ void Weapon_BFG (edict_t *ent);
 
 gitem_armor_t jacketarmor_info	= { 25,  50, .30, .00, ARMOR_JACKET};
 gitem_armor_t combatarmor_info	= { 50, 100, .60, .30, ARMOR_COMBAT};
-gitem_armor_t bodyarmor_info	= {100, 200, .80, .60, ARMOR_BODY};
+gitem_armor_t bodyarmor_info	= { 100, 200, .80, .60, ARMOR_BODY};
+gitem_armor_t g_armor_info		= { 50, 50, .80, .60, ARMOR_BODY };
+gitem_armor_t d_armor_info		= { 75, 75, .80, .60, ARMOR_BODY };
+gitem_armor_t b_armor_info		= { 100, 100, .80, .60, ARMOR_BODY };
 
 static int	jacket_armor_index;
 static int	combat_armor_index;
@@ -613,8 +616,13 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 	float			salvage;
 	int				salvagecount;
 
+	// Berserker Level 10
+	if (other->client && other->client->pers.playerClass == 3 && other->client->pers.level >= 10) {
+		return;
+	}
+
 	// get info on new armor
-	newinfo = (gitem_armor_t *)ent->item->info;
+	newinfo = (gitem_armor_t*)ent->item->info;
 
 	old_armor_index = ArmorIndex (other);
 
@@ -685,13 +693,87 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 
 qboolean Pickup_Dosh(edict_t* ent, edict_t* other)
 {	
-	gi.bprintf(PRINT_MEDIUM, "We have picked up dosh\n");
+	//gi.bprintf(PRINT_MEDIUM, "We have picked up dosh\n");
 	if (other->client) {
 		other->client->pers.dosh += 100;
-		gi.bprintf(PRINT_MEDIUM, "%i current dosh", other->client->pers.dosh);
+		//gi.bprintf(PRINT_MEDIUM, "%i current dosh\n", other->client->pers.dosh);
 	}
 	return true;
 }
+
+/*
+Function for confirming if the purchase is possible
+If player does not have enough money, then purchase cannot occur
+Else, take money away and confirm purchase
+*/
+qboolean ConfirmPurchase(edict_t* ent, int cost) {
+	int doshNeeded;
+	if (ent->client->pers.dosh - cost < 0) {
+		doshNeeded = (ent->client->pers.dosh - cost) * -1;
+		gi.bprintf(PRINT_MEDIUM, "You are poor! You need %i more dosh\n", doshNeeded);
+		return false;
+	}
+	else {
+		ent->client->pers.dosh = ent->client->pers.dosh - cost;
+		return true;
+	}
+
+}
+
+
+/*
+Function for purchasing item
+Checks item and confirms its purchase
+Returns bool value for if item is able to be purchase or not
+*/
+
+qboolean PurchaseItem(edict_t* ent, char* name) {
+	qboolean confirmation;
+
+
+	if (strcmp(name, "Shotgun") == 0) {
+		confirmation = ConfirmPurchase(ent, 100);
+	}
+	else if (strcmp(name, "Super Shotgun") == 0) {
+		confirmation = ConfirmPurchase(ent, 200);
+	}
+	else if (strcmp(name, "Machinegun") == 0) {
+		confirmation = ConfirmPurchase(ent, 300);
+	}
+	else if (strcmp(name, "Chaingun") == 0) {
+		confirmation = ConfirmPurchase(ent, 400);
+	}
+	else if (strcmp(name, "Grenade Launcher") == 0) {
+		confirmation = ConfirmPurchase(ent, 600);
+	}
+	else if (strcmp(name, "HyperBlaster") == 0) {
+		confirmation = ConfirmPurchase(ent, 700);
+	}
+	else if (strcmp(name, "Rocket Launcher") == 0) {
+		confirmation = ConfirmPurchase(ent, 800);
+	}
+	else if (strcmp(name, "Railgun") == 0) {
+		confirmation = ConfirmPurchase(ent, 900);
+	}
+	else if (strcmp(name, "BFG10K") == 0) {
+		confirmation = ConfirmPurchase(ent, 1000);
+	}
+	else if (strcmp(name, "Health") == 0) {
+		confirmation = ConfirmPurchase(ent, 50);
+	}
+	else if (strcmp(name, "Body Armor") == 0) {
+		confirmation = ConfirmPurchase(ent, 50);
+	}
+	else if (strcmp(name, "Ammo") == 0) {
+		confirmation = ConfirmPurchase(ent, 50);
+	}
+
+	gi.bprintf(PRINT_MEDIUM, "Purchasing %s\n", gi.args(1));
+	return confirmation;
+
+}
+
+
 
 void Buy_Shotgun(edict_t* ent, gitem_t* item)
 {
@@ -702,14 +784,23 @@ void Buy_Shotgun(edict_t* ent, gitem_t* item)
 	itemStringSize = strlen(item->pickup_name);
 	index = ITEM_INDEX(FindItem(item->pickup_name));
 
-	memcpy(gi.args(0), &item->pickup_name[4], itemStringSize-4);
+	memcpy(gi.args(0), &item->pickup_name[4], itemStringSize - 4);
 	gi.args(0)[itemStringSize - 4] = '\0';
 
-	//index = ITEM_INDEX(FindItem(""));
-	ent->client->pers.inventory[ITEM_INDEX(item)]--;
 
-	gi.bprintf(PRINT_MEDIUM, "User has purchased %s\n", gi.args(1));
-	Cmd_Give_f(ent);
+	if (PurchaseItem(ent, gi.args(1))) {
+		//index = ITEM_INDEX(FindItem(""));
+		if (strcmp(gi.args(0), "Ammo") != 0) {
+			ent->client->pers.inventory[ITEM_INDEX(item)]--;
+		}
+		ValidateSelectedItem(ent);
+		gi.bprintf(PRINT_MEDIUM, "User has purchased %s\n", gi.args(1));
+
+		if (strcmp(gi.args(0), "Health") == 0) {
+			ent->health = ent->max_health;
+		}
+		Cmd_Give_f(ent);
+	}
 	/*
 	index = ITEM_INDEX(FindItem(weaponTxt));
 	ent->client->pers.inventory[index]++;
@@ -976,6 +1067,7 @@ void droptofloor (edict_t *ent)
 	tr = gi.trace (ent->s.origin, ent->mins, ent->maxs, dest, ent, MASK_SOLID);
 	if (tr.startsolid)
 	{
+		GiveDosh(100);
 		gi.dprintf ("droptofloor: %s startsolid at %s\n", ent->classname, vtos(ent->s.origin));
 		G_FreeEdict (ent);
 		return;
@@ -2362,6 +2454,48 @@ tank commander's head
 	},
 
 	{
+		"item_buy_health",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy Health",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
+		"item_buy_armor",
+		Pickup_Powerup,
+		Buy_Shotgun,
+		Drop_General,
+		NULL,
+		"items/pkup.wav",
+		"models/items/quaddama/tris.md2", EF_ROTATE,
+		NULL,
+		/* icon */		"p_quad",
+		/* pickup */	"Buy Body Armor",
+		/* width */		2,
+		0,
+		NULL,
+		IT_POWERUP,
+		0,
+		NULL,
+		0,
+		/* precache */ ""
+	},
+
+	{
 		"item_buy_ammo",
 		Pickup_Powerup,
 		Buy_Shotgun,
@@ -2381,6 +2515,7 @@ tank commander's head
 		0,
 		/* precache */ ""
 	},
+
 
 	// end of list marker
 	{NULL}

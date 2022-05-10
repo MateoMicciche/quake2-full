@@ -451,15 +451,31 @@ static void Grenade_Explode (edict_t *ent)
 	gi.WritePosition (origin);
 	gi.multicast (ent->s.origin, MULTICAST_PHS);
 
-	if (strncmp(ent->classname, "hgrenade", 8) == 0) {
-		for (i = 0; i < 6; i++) {
-			spread[0] = crandom();
-			spread[1] = crandom();
-			spread[2] = random();
-			//gi.bprintf(PRINT_MEDIUM, "Spread 1 %f\n", spread[0]);
-			//gi.bprintf(PRINT_MEDIUM, "Spread 2 %f\n", spread[1]);
-			//gi.bprintf(PRINT_MEDIUM, "Spread 3 %f\n", spread[2]);
-			fire_rocket(ent->owner, ent->s.origin, spread, 60, 640, 120, 120);
+	// Demolitionist Level 15
+	if (ent->owner->client) {
+		if (ent->owner->client->pers.playerClass == 2 && ent->owner->client->pers.level >= 15) {
+			if (strncmp(ent->classname, "hgrenade", 8) == 0) {
+				for (i = 0; i < 6; i++) {
+					spread[0] = crandom();
+					spread[1] = crandom();
+					spread[2] = random();
+					//gi.bprintf(PRINT_MEDIUM, "Spread 1 %f\n", spread[0]);
+					//gi.bprintf(PRINT_MEDIUM, "Spread 2 %f\n", spread[1]);
+					//gi.bprintf(PRINT_MEDIUM, "Spread 3 %f\n", spread[2]);
+					fire_rocket(ent->owner, ent->s.origin, spread, 60, 640, 120, 120);
+				}
+			}
+			else if (strncmp(ent->classname, "grenade", 8) == 0) {
+				for (i = 0; i < 6; i++) {
+					spread[0] = crandom();
+					spread[1] = crandom();
+					spread[2] = random();
+					//gi.bprintf(PRINT_MEDIUM, "Spread 1 %f\n", spread[0]);
+					//gi.bprintf(PRINT_MEDIUM, "Spread 2 %f\n", spread[1]);
+					//gi.bprintf(PRINT_MEDIUM, "Spread 3 %f\n", spread[2]);
+					fire_rocket(ent->owner, ent->s.origin, spread, 60, 640, 120, 120);
+				}
+			}
 		}
 	}
 

@@ -264,7 +264,9 @@ void Cmd_Give_f (edict_t *ent)
 
 		it = FindItem("Body Armor");
 		info = (gitem_armor_t *)it->info;
+
 		ent->client->pers.inventory[ITEM_INDEX(it)] = info->max_count;
+
 
 		if (!give_all)
 			return;
@@ -506,7 +508,7 @@ Cmd_Inven_f
 */
 void Cmd_Inven_f (edict_t *ent)
 {
-	int			i;
+	int			i,index,len;
 	gclient_t	*cl;
 
 	cl = ent->client;
@@ -521,11 +523,18 @@ void Cmd_Inven_f (edict_t *ent)
 	}
 
 	cl->showinventory = true;
-	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[0]);
-	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[1]);
-	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[7]);
-	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[8]);
-	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[9]);
+
+	//gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[0]);
+	//gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[1]);
+	//gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[7]);
+	//gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[8]);
+	//gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[9]);
+	len = game.num_items;
+	index = ITEM_INDEX(FindItem("Buy Shotgun"));
+	for (i = index; i < len; i++) {
+		cl->pers.inventory[i] = 0;
+	}
+
 	gi.WriteByte (svc_inventory);
 	for (i=0 ; i<MAX_ITEMS ; i++)
 	{
@@ -1045,8 +1054,13 @@ void Cmd_Class_f(edict_t* ent)
 	char* name;
 	gclient_t* cl;
 	char	string[1024];
+	gitem_armor_t* info;
+	gitem_t* it;
 
 	cl = ent->client;
+
+	it = FindItem("Body Armor");
+	info = (gitem_armor_t*)it->info;
 
 	name = gi.args();
 	gi.bprintf(PRINT_MEDIUM, "%s\n", name);
@@ -1056,10 +1070,7 @@ void Cmd_Class_f(edict_t* ent)
 		cl->pers.health = 75;
 		ent->max_health = 75;
 		ent->health = ent->max_health;
-		ent->moveinfo.move_speed = 1;
-		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.move_speed);
-		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.current_speed);
-		gi.bprintf(PRINT_MEDIUM, "%f\n", ent->moveinfo.speed);
+		ent->client->pers.inventory[ITEM_INDEX(it)] = 50;
 		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
 		cl->pers.playerClass = 1;
 	}
@@ -1069,15 +1080,17 @@ void Cmd_Class_f(edict_t* ent)
 		cl->pers.health = 125;
 		ent->max_health = 125;
 		ent->health = ent->max_health;
+		ent->client->pers.inventory[ITEM_INDEX(it)] = 75;
 		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
 		cl->pers.playerClass = 2;
 	}
 
-	else if (Q_stricmp(name, "beserker") == 0) {
+	else if (Q_stricmp(name, "berserker") == 0) {
 		cl->pers.max_health = 200;
 		cl->pers.health = 200;
 		ent->max_health = 200;
 		ent->health = ent->max_health;
+		ent->client->pers.inventory[ITEM_INDEX(it)] = 100;
 		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
 		cl->pers.playerClass = 3;
 	}
@@ -1109,6 +1122,27 @@ void Cmd_Spawn_f(edict_t* self)
 	}
 	*/
 
+}
+
+void Cmd_Level_f(edict_t* self)
+{
+	gclient_t* cl;
+	edict_t* ent;
+	int new_level;
+
+	new_level = atoi(gi.args());
+
+	cl = self->client;
+
+	SetPlayerLevel(self, new_level);
+
+	// Beserker Level 5
+	if (self->client->pers.playerClass == 3 && self->client->pers.level >= 5) {
+		if (self->max_health != 300) {
+			self->max_health = 300;
+			self->health = self->max_health;
+		}
+	}
 }
 
 
@@ -1205,6 +1239,8 @@ void ClientCommand (edict_t *ent)
 		Cmd_Class_f(ent);
 	else if (Q_stricmp(cmd, "spawn") == 0)
 		Cmd_Spawn_f(ent);
+	else if (Q_stricmp(cmd, "level") == 0)
+		Cmd_Level_f(ent);
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }
