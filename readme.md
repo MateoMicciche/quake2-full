@@ -21,7 +21,7 @@ Below are the deliverables for this mod:
 - Enemies drop currency that players can pick up
 
 ## Changes
-#### Enemies Spawn in waves (In 20 second intervals, can only spawn next wave if player clears prior wave)
+#### Enemies Spawn in waves (In 15 second intervals, can only spawn next wave if player clears prior wave)
 #### Players now pick out of three of the classes to spawn in as (Gunslinger, Demolitionist, Beserker) (Perks detailed in Testing)
 ##### - Gunslinger has 75 health and 50 shield (Great single-target damage)
 ##### - Demolitionist has 125 health and 75 shield (Explosive Oriented)
@@ -61,7 +61,7 @@ They can enter the commandline to choose their class as so:
 - class gunslinger
 - class demo
 - class berserker
-These can also be binded to a key, and the config file included already includes the keybinds for choosing classes
+These can also be binded to a key, and the config file included already includes the keybinds for choosing classes (n, m , ",") respectfully.
 
 ### Player earns xp and levels up to unlock perks (3 for each class)
 There are three classes, each with three perks that unlock at player levels 5, 10, and 15.
