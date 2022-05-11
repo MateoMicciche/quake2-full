@@ -530,7 +530,7 @@ void Cmd_Inven_f (edict_t *ent)
 	//gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[8]);
 	//gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.inventory[9]);
 	len = game.num_items;
-	index = ITEM_INDEX(FindItem("Buy Shotgun"));
+	index = ITEM_INDEX(FindItem("($100)Buy Shotgun"));
 	for (i = index; i < len; i++) {
 		cl->pers.inventory[i] = 0;
 	}
@@ -1016,18 +1016,11 @@ void Cmd_BuyMenu_f(edict_t* ent)
 
 	cl->showinventory = true;
 	len = game.num_items;
-	index = ITEM_INDEX(FindItem("Buy Shotgun"));
+	index = ITEM_INDEX(FindItem("($100)Buy Shotgun"));
 	for (i = index; i < len; i++) {
 		cl->pers.inventory[i] = 1;
 		cl->pers.shop[i] = 1;
 	}
-	//cl->pers.inventory[index]++;
-	//cl->pers.shop[index]++;
-	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[0]);
-	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[1]);
-	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[7]);
-	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[8]);
-	gi.bprintf(PRINT_MEDIUM, "%i\n", cl->pers.shop[9]);
 	
 
 	gi.WriteByte(svc_inventory);
@@ -1053,7 +1046,6 @@ void Cmd_Class_f(edict_t* ent)
 {	
 	char* name;
 	gclient_t* cl;
-	char	string[1024];
 	gitem_armor_t* info;
 	gitem_t* it;
 
@@ -1065,6 +1057,7 @@ void Cmd_Class_f(edict_t* ent)
 	name = gi.args();
 	gi.bprintf(PRINT_MEDIUM, "%s\n", name);
 
+	// Switches user to gunslinger, demo, or berserker based class chosen
 	if (Q_stricmp(name, "gunslinger") == 0) {
 		cl->pers.max_health = 75;
 		cl->pers.health = 75;
@@ -1093,10 +1086,22 @@ void Cmd_Class_f(edict_t* ent)
 		ent->client->pers.inventory[ITEM_INDEX(it)] = 100;
 		gi.bprintf(PRINT_MEDIUM, "%s\n", name);
 		cl->pers.playerClass = 3;
+		// Beserker Level 5
+		if (ent->client->pers.playerClass == 3 && ent->client->pers.level >= 5) {
+			if (ent->max_health != 300) {
+				ent->max_health = 300;
+				ent->health = ent->max_health;
+				ent->client->pers.inventory[ITEM_INDEX(it)] = 0;
+			}
+		}
 	}
 
 }
 
+/*
+Command for spawning an enemy
+Ex: spawn monster_soldier
+*/
 void Cmd_Spawn_f(edict_t* self)
 {
 	char* name;
@@ -1124,10 +1129,15 @@ void Cmd_Spawn_f(edict_t* self)
 
 }
 
+
+/*
+Command for setting the players level
+Ex: level 15
+*/
 void Cmd_Level_f(edict_t* self)
 {
 	gclient_t* cl;
-	edict_t* ent;
+	gitem_t* it;
 	int new_level;
 
 	new_level = atoi(gi.args());
@@ -1136,12 +1146,14 @@ void Cmd_Level_f(edict_t* self)
 
 	SetPlayerLevel(self, new_level);
 
+
+	it = FindItem("Body Armor");
+
 	// Beserker Level 5
 	if (self->client->pers.playerClass == 3 && self->client->pers.level >= 5) {
-		if (self->max_health != 300) {
-			self->max_health = 300;
-			self->health = self->max_health;
-		}
+		self->max_health = 300;
+		self->health = self->max_health;
+		self->client->pers.inventory[ITEM_INDEX(it)] = 0;
 	}
 }
 
@@ -1183,6 +1195,11 @@ void ClientCommand (edict_t *ent)
 	if (Q_stricmp (cmd, "help") == 0)
 	{
 		Cmd_Help_f (ent);
+		return;
+	}
+	if (Q_stricmp(cmd, "howtoplay") == 0)
+	{
+		Cmd_HowToPlay_f(ent);
 		return;
 	}
 

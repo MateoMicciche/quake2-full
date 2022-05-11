@@ -618,7 +618,7 @@ qboolean Pickup_Armor (edict_t *ent, edict_t *other)
 
 	// Berserker Level 10
 	if (other->client && other->client->pers.playerClass == 3 && other->client->pers.level >= 10) {
-		return;
+		return false;
 	}
 
 	// get info on new armor
@@ -744,28 +744,28 @@ qboolean PurchaseItem(edict_t* ent, char* name) {
 		confirmation = ConfirmPurchase(ent, 400);
 	}
 	else if (strcmp(name, "Grenade Launcher") == 0) {
-		confirmation = ConfirmPurchase(ent, 600);
+		confirmation = ConfirmPurchase(ent, 500);
 	}
 	else if (strcmp(name, "HyperBlaster") == 0) {
-		confirmation = ConfirmPurchase(ent, 700);
+		confirmation = ConfirmPurchase(ent, 600);
 	}
 	else if (strcmp(name, "Rocket Launcher") == 0) {
-		confirmation = ConfirmPurchase(ent, 800);
+		confirmation = ConfirmPurchase(ent, 700);
 	}
 	else if (strcmp(name, "Railgun") == 0) {
-		confirmation = ConfirmPurchase(ent, 900);
+		confirmation = ConfirmPurchase(ent, 800);
 	}
 	else if (strcmp(name, "BFG10K") == 0) {
-		confirmation = ConfirmPurchase(ent, 1000);
+		confirmation = ConfirmPurchase(ent, 900);
 	}
 	else if (strcmp(name, "Health") == 0) {
-		confirmation = ConfirmPurchase(ent, 50);
+		confirmation = ConfirmPurchase(ent, 100);
 	}
 	else if (strcmp(name, "Body Armor") == 0) {
-		confirmation = ConfirmPurchase(ent, 50);
+		confirmation = ConfirmPurchase(ent, 100);
 	}
 	else if (strcmp(name, "Ammo") == 0) {
-		confirmation = ConfirmPurchase(ent, 50);
+		confirmation = ConfirmPurchase(ent, 100);
 	}
 
 	gi.bprintf(PRINT_MEDIUM, "Purchasing %s\n", gi.args(1));
@@ -779,13 +779,12 @@ void Buy_Shotgun(edict_t* ent, gitem_t* item)
 {
 	int		index;
 	size_t	itemStringSize;
-	//char weaponTxt[20];
 
 	itemStringSize = strlen(item->pickup_name);
 	index = ITEM_INDEX(FindItem(item->pickup_name));
 
-	memcpy(gi.args(0), &item->pickup_name[4], itemStringSize - 4);
-	gi.args(0)[itemStringSize - 4] = '\0';
+	memcpy(gi.args(0), &item->pickup_name[10], itemStringSize - 10);
+	gi.args(0)[itemStringSize - 10] = '\0';
 
 
 	if (PurchaseItem(ent, gi.args(1))) {
@@ -2274,7 +2273,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy Shotgun",
+		/* pickup */	"($100)Buy Shotgun",
 		/* width */		2,
 		0,
 		NULL,
@@ -2295,7 +2294,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy Super Shotgun",
+		/* pickup */	"($200)Buy Super Shotgun",
 		/* width */		2,
 		0,
 		NULL,
@@ -2316,7 +2315,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy Machinegun",
+		/* pickup */	"($300)Buy Machinegun",
 		/* width */		2,
 		0,
 		NULL,
@@ -2337,7 +2336,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy Chaingun",
+		/* pickup */	"($400)Buy Chaingun",
 		/* width */		2,
 		0,
 		NULL,
@@ -2358,7 +2357,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy Grenade Launcher",
+		/* pickup */	"($500)Buy Grenade Launcher",
 		/* width */		2,
 		0,
 		NULL,
@@ -2379,7 +2378,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy HyperBlaster",
+		/* pickup */	"($600)Buy HyperBlaster",
 		/* width */		2,
 		0,
 		NULL,
@@ -2400,7 +2399,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy Rocket Launcher",
+		/* pickup */	"($700)Buy Rocket Launcher",
 		/* width */		2,
 		0,
 		NULL,
@@ -2421,7 +2420,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy Railgun",
+		/* pickup */	"($800)Buy Railgun",
 		/* width */		2,
 		0,
 		NULL,
@@ -2442,7 +2441,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy BFG10K",
+		/* pickup */	"($900)Buy BFG10K",
 		/* width */		2,
 		0,
 		NULL,
@@ -2463,7 +2462,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy Health",
+		/* pickup */	"($100)Buy Health",
 		/* width */		2,
 		0,
 		NULL,
@@ -2484,7 +2483,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy Body Armor",
+		/* pickup */	"($100)Buy Body Armor",
 		/* width */		2,
 		0,
 		NULL,
@@ -2505,7 +2504,7 @@ tank commander's head
 		"models/items/quaddama/tris.md2", EF_ROTATE,
 		NULL,
 		/* icon */		"p_quad",
-		/* pickup */	"Buy Ammo",
+		/* pickup */	"($100)Buy Ammo",
 		/* width */		2,
 		0,
 		NULL,

@@ -29,6 +29,26 @@ INTERMISSION
 ======================================================================
 */
 
+// String for the help menu
+static const char* howtoString[] =
+{
+	"Killing Floor 2 Mod",
+	"How to Play:",
+	"Waves come in every 15 seconds, you must clear wave before the next one spawns",
+	"Choose between three classes (Gunslinger, Demolitionist, Berserker) ",
+	"Kill enemies to gain xp. Level up to levels 5, 10, and 15 to unlock perks",
+	"Gunslinger(n) Perks:",
+	"20% chance to not consume ammo when firing, weapons fire fast, consective hits deal extra damage",
+	"Demolitionist(m) Perks:",
+	"Gains resistance to explosives, explosive splash range doubled, grenade explosives release rockets",
+	"Berserker(,) Perks:",
+	"Shield get converted to health, gain 5 health per kill, damage taken reduced by 40%",
+	"Killing enemies drops dosh",
+	"Open buymenu by pressing b (check keybinds) and buy weapons, health, and ammo using dosh",
+	0
+};
+
+
 void MoveClientToIntermission (edict_t *ent)
 {
 	if (deathmatch->value || coop->value)
@@ -338,6 +358,57 @@ void HelpComputer (edict_t *ent)
 
 /*
 ==================
+HowToPlay Menu
+
+Draw how tom play menu.
+==================
+*/
+void HelpMenu(edict_t* ent)
+{
+
+	char	string[2048];
+
+
+	Com_sprintf(string, sizeof(string),
+		"xv 0 yv -165 cstring2 \"%s\""	// Title of Mod
+		"xv 0 yv -150 cstring2 \"%s\""	// How to play
+		"xv 0 yv -135 cstring2 \"%s\""	// Part 1.1
+		"xv 0 yv -120 cstring2 \"%s\""	// Part 1.2
+		"xv 0 yv -105 cstring2 \"%s\""	// Part 2.1
+		"xv 0 yv -90 cstring2 \"%s\""	// Part 2.1
+		"xv 0 yv -75 cstring2 \"%s\""	// Perks
+		"xv 0 yv -60 cstring2 \"%s\""	// Gunslinger
+		"xv 0 yv -45 cstring2 \"%s\""	// Perks 1
+		"xv 0 yv -30 cstring2 \"%s\""	// Perks 2
+		"xv 0 yv -15 cstring2 \"%s\""	// Perks 3
+		"xv 0 yv 0 cstring2 \"%s\""		// Demo
+		"xv 0 yv 15 cstring2 \"%s\""	// Perks 1
+		"xv 0 yv 30 cstring2 \"%s\"",	// Perks 2
+		howtoString[0],
+		howtoString[1],
+		howtoString[2],
+		howtoString[3],
+		howtoString[4],
+		howtoString[5],
+		howtoString[6],
+		howtoString[7],
+		howtoString[8],
+		howtoString[9],
+		howtoString[10],
+		howtoString[11],
+		howtoString[12]
+
+	);
+	gi.WriteByte(svc_layout);
+	gi.WriteString(string);
+	gi.unicast(ent, true);
+
+
+}
+
+
+/*
+==================
 Cmd_Help_f
 
 Display the current help message
@@ -364,6 +435,36 @@ void Cmd_Help_f (edict_t *ent)
 	ent->client->showhelp = true;
 	ent->client->pers.helpchanged = 0;
 	HelpComputer (ent);
+}
+
+/*
+==================
+Cmd_HowToPlay_f
+
+Display the how to play screen
+==================
+*/
+void Cmd_HowToPlay_f(edict_t* ent)
+{
+	// this is for backwards compatability
+	if (deathmatch->value)
+	{
+		Cmd_Score_f(ent);
+		return;
+	}
+
+	ent->client->showinventory = false;
+	ent->client->showscores = false;
+
+	if (ent->client->showhelp && (ent->client->pers.game_helpchanged == game.helpchanged))
+	{
+		ent->client->showhelp = false;
+		return;
+	}
+
+	ent->client->showhelp = true;
+	ent->client->pers.helpchanged = 0;
+	HelpMenu(ent);
 }
 
 

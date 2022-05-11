@@ -601,6 +601,7 @@ extern	gitem_t	itemlist[];
 //
 void Cmd_Help_f (edict_t *ent);
 void Cmd_Score_f (edict_t *ent);
+void Cmd_HowToPlay_f(edict_t* ent);
 
 //
 // g_items.c
@@ -815,11 +816,22 @@ void ChaseNext(edict_t *ent);
 void ChasePrev(edict_t *ent);
 void GetChaseTarget(edict_t *ent);
 
+// KF2 MOD CHANGES BELOW
+
+// Gets and Sets player level
 int GetPlayerLevel();
 void SetPlayerLevel(edict_t* player, int new_level);
+
+// Used for changing player level
 void SP_target_changelevel(edict_t* ent);
+
+// For spawning enemies
 void ED_CallSpawn(edict_t* ent);
+
+// Allows give to be used outside of class
 void Cmd_Give_f(self);
+
+// Gives player dosh
 void GiveDosh(int inc);
 
 //============================================================================
@@ -871,11 +883,11 @@ typedef struct
 
 	qboolean	spectator;			// client is a spectator
 
-	int			level;
-	int			xp;
-	int			dosh;
-	int			shop[MAX_ITEMS];
-	int			playerClass;
+	int			level;				// Players Level
+	int			xp;					// Current xp held
+	int			dosh;				// Currency held
+	int			shop[MAX_ITEMS];	// Shop for buying items
+	int			playerClass;		// For holding players class chosen
 
 } client_persistant_t;
 
@@ -975,7 +987,7 @@ struct gclient_s
 	edict_t		*chase_target;		// player we are chasing
 	qboolean	update_chase;		// need to update chase info?
 
-	qboolean	showbuymenu;
+	qboolean	showbuymenu;		// For displaying buy menu
 };
 
 

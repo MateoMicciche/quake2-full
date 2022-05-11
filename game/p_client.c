@@ -647,7 +647,7 @@ void InitClientPersistant (gclient_t *client)
 	client->pers.xp = 0;
 	client->pers.dosh = 1000;
 	len = game.num_items;
-	index = ITEM_INDEX(FindItem("Buy Shotgun"));
+	index = ITEM_INDEX(FindItem("($100)Buy Shotgun"));
 	for (i = index; i < len; i++) {
 		client->pers.inventory[i] = 1;
 		client->pers.shop[i] = 1;
@@ -1589,7 +1589,7 @@ void PrintPmove (pmove_t *pm)
 	Com_Printf ("sv %3i:%i %i\n", pm->cmd.impulse, c1, c2);
 }
 
-
+// Spawns waves of enemies depending on wave
 void SpawnWaves(int timer) {
 	edict_t* ent;
 	char* name[32];
@@ -1830,6 +1830,8 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 			UpdateChaseCam(other);
 	}
 
+	// Sets timer to start spawning monsters
+	// Handles how and when waves appear
 	timer = level.framenum * FRAMETIME;
 	if (Q_stricmp(level.mapname, "q2dm1") == 0) {
 
@@ -1848,7 +1850,7 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 				gi.bprintf(PRINT_MEDIUM, "Wave %i\n", wave);
 				SpawnWaves(5);
 			}
-			gi.bprintf(PRINT_MEDIUM, "Spawn now Time: %i\n", timer);
+			//gi.bprintf(PRINT_MEDIUM, "Spawn now Time: %i\n", timer);
 			return;
 		}
 	}
@@ -1915,10 +1917,12 @@ void ClientBeginServerFrame (edict_t *ent)
 	client->latched_buttons = 0;
 }
 
+// Gets players level
 int GetPlayerLevel() {
 	return player_level;
 }
 
+// Sets players level
 void SetPlayerLevel(edict_t* player, int new_level) {
 	player->client->pers.level = new_level;
 }

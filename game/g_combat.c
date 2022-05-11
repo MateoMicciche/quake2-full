@@ -84,13 +84,19 @@ qboolean CanDamage (edict_t *targ, edict_t *inflictor)
 	return false;
 }
 
-
+/*
+This checks level of player and determines if they should level up
+Called each time a player gets a kill
+*/
 void CheckLevel(edict_t* player) {
 	int currentXP;
+	gitem_t* it;
+
+	it = FindItem("Body Armor");
 
 	currentXP = player->client->pers.xp;
-	gi.bprintf(PRINT_MEDIUM, "%i total xp\n", player->client->pers.xp);
-	gi.bprintf(PRINT_MEDIUM, "%i current level\n", player->client->pers.level);
+	//gi.bprintf(PRINT_MEDIUM, "%i total xp\n", player->client->pers.xp);
+	//gi.bprintf(PRINT_MEDIUM, "%i current level\n", player->client->pers.level);
 	if (currentXP == 50) {
 		player->client->pers.xp = 0;
 		player->client->pers.level += 1;
@@ -101,8 +107,8 @@ void CheckLevel(edict_t* player) {
 		if (player->max_health != 300) {
 			player->max_health = 300;
 			player->health = player->max_health;
+			player->client->pers.inventory[ITEM_INDEX(it)] = 0;
 		}
-
 	}
 
 	// Beserker Level 10
@@ -114,8 +120,6 @@ void CheckLevel(edict_t* player) {
 			player->health = player->max_health;
 		}
 	}
-
-
 }
 
 /*
@@ -133,7 +137,7 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 
 	targ->enemy = attacker;
 
-	gi.bprintf(PRINT_MEDIUM, "%s\n", inflictor->classname);
+	//gi.bprintf(PRINT_MEDIUM, "%s\n", inflictor->classname);
 
 
 	if ((targ->svflags & SVF_MONSTER) && (targ->deadflag != DEAD_DEAD))
@@ -152,13 +156,13 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 			SpawnItem(it_ent, it);
 
 			//killStack++;
-			gi.bprintf(PRINT_MEDIUM, "YOOOO \n");
+			//gi.bprintf(PRINT_MEDIUM, "YOOOO \n");
 			//gi.bprintf(PRINT_MEDIUM, "%i \n", killStack);
 
 
 			if (attacker->client) {
-				gi.bprintf(PRINT_MEDIUM, "%i \n", attacker->client->pers.level);
-				gi.bprintf(PRINT_MEDIUM, "%s \n", targ->classname);
+				//gi.bprintf(PRINT_MEDIUM, "%i \n", attacker->client->pers.level);
+				//gi.bprintf(PRINT_MEDIUM, "%s \n", targ->classname);
 				
 				attacker->client->pers.xp += 10;
 				CheckLevel(attacker);
@@ -456,35 +460,29 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 			if (consAttk < 10) {
 				consAttk += 1;
 			}
-			//gi.bprintf(PRINT_MEDIUM, "Damage %i\n", damage);
 			consAttkMulti = (0.2 * consAttk) + 1;
 			damage = damage * consAttkMulti;
-			//gi.bprintf(PRINT_MEDIUM, "New Damage %i\n", damage);
-
-			//gi.bprintf(PRINT_MEDIUM, "Consecutive Attack %i\n", consAttk);
 		}
 	}
-	// 
+
+	
 	// Demolitionist Level 5 && Gunslinger Level 15
 	if (targ->client) {
 		if (targ->client->pers.playerClass == 2 && targ->client->pers.level >= 5) {
 			if (Q_stricmp(inflictor->classname, "rocket") == 0 || Q_stricmp(inflictor->classname, "worldspawn") == 0 || 
 				Q_stricmp(inflictor->classname, "grenade") == 0 || Q_stricmp(inflictor->classname, "hgrenade") == 0) {
-				gi.bprintf(PRINT_MEDIUM, "Damage should be 0\n");
+				//gi.bprintf(PRINT_MEDIUM, "Damage should be 0\n");
 				damage = 0;
 			}
 		}
 		else if (targ->client->pers.playerClass == 1 && attacker->client->pers.level >= 15) {
 			consAttk = 0;
-			//gi.bprintf(PRINT_MEDIUM, "Consecutive Attack %i\n", consAttk);
 		}
 	}
 
 	// Beserker Level 15
 	if (targ->client && targ->client->pers.playerClass == 3 && targ->client->pers.level >= 15) {
-		//gi.bprintf(PRINT_MEDIUM, "Before Perk %i\n", damage);
 		damage = damage*0.6;
-		//gi.bprintf(PRINT_MEDIUM, "After Perk %i\n", damage);
 	}
 
 	// friendly fire avoidance
