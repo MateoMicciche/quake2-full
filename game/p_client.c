@@ -1846,8 +1846,8 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		else if (timer % 15 == 0) {
 			
 			if (level.total_monsters == 0) {
-				wave += 1;
 				gi.bprintf(PRINT_MEDIUM, "Wave %i\n", wave);
+				wave += 1;
 				SpawnWaves(5);
 			}
 			//gi.bprintf(PRINT_MEDIUM, "Spawn now Time: %i\n", timer);
