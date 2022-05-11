@@ -772,6 +772,7 @@ void Weapon_GrenadeLauncher (edict_t *ent)
 	static int	fire_frames[]	= {6, 0};
 
 	// Gunslinger Level 10
+	
 	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
 		Weapon_Generic(ent, 5, 8, 59, 64, pause_frames, fire_frames, weapon_grenadelauncher_fire);
 	}
@@ -908,11 +909,13 @@ void Weapon_Blaster (edict_t *ent)
 	static int	fire_frames[]	= {5, 0};
 
 	// Gunslinger Level 10
-	if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
-		Weapon_Generic(ent, 4, 5, 52, 55, pause_frames, fire_frames, Weapon_Blaster_Fire);
-	}
-	else {
-		Weapon_Generic(ent, 4, 8, 52, 55, pause_frames, fire_frames, Weapon_Blaster_Fire);
+	if (ent->client) {
+		if (ent->client->pers.playerClass == 1 && ent->client->pers.level >= 10) {
+			Weapon_Generic(ent, 4, 5, 52, 55, pause_frames, fire_frames, Weapon_Blaster_Fire);
+		}
+		else {
+			Weapon_Generic(ent, 4, 8, 52, 55, pause_frames, fire_frames, Weapon_Blaster_Fire);
+		}
 	}
 }
 

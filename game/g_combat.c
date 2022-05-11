@@ -439,9 +439,9 @@ qboolean CheckTeamDamage (edict_t *targ, edict_t *attacker)
 	return false;
 }
 
-void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir, vec3_t point, vec3_t normal, int damage, int knockback, int dflags, int mod)
+void T_Damage(edict_t* targ, edict_t* inflictor, edict_t* attacker, vec3_t dir, vec3_t point, vec3_t normal, int damage, int knockback, int dflags, int mod)
 {
-	gclient_t	*client;
+	gclient_t* client;
 	int			take;
 	int			save;
 	int			asave;
@@ -455,13 +455,15 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 	//gi.bprintf(PRINT_MEDIUM, "Classname: %s\n", inflictor->classname);
 
 	// Gunslinger Level 15
-	if ( attacker->client && (targ->svflags & SVF_MONSTER) && !(targ->svflags & SVF_DEADMONSTER)) {
-		if (attacker->client->pers.playerClass == 1 && attacker->client->pers.level >= 15) {
-			if (consAttk < 10) {
-				consAttk += 1;
+	if (attacker->client) {
+		if ((targ->svflags & SVF_MONSTER) && !(targ->svflags & SVF_DEADMONSTER)) {
+			if (attacker->client->pers.playerClass == 1 && attacker->client->pers.level >= 15) {
+				if (consAttk < 10) {
+					consAttk += 1;
+				}
+				consAttkMulti = (0.2 * consAttk) + 1;
+				damage = damage * consAttkMulti;
 			}
-			consAttkMulti = (0.2 * consAttk) + 1;
-			damage = damage * consAttkMulti;
 		}
 	}
 
@@ -475,7 +477,7 @@ void T_Damage (edict_t *targ, edict_t *inflictor, edict_t *attacker, vec3_t dir,
 				damage = 0;
 			}
 		}
-		else if (targ->client->pers.playerClass == 1 && attacker->client->pers.level >= 15) {
+		else if (targ->client->pers.playerClass == 1 && targ->client->pers.level >= 15) {
 			consAttk = 0;
 		}
 	}
